@@ -1,0 +1,25 @@
+修改后
+var timer=0;
+$(window).scroll(function(){
+	if(timer){
+		clearTimeout(timer);
+		timer=0;
+	}
+	timer=setTimeout(function(){
+		alert(1);
+	},300);
+});
+
+或者
+var timer=0;
+$(window).scroll(function(){
+	if(timer){
+		clearTimeout(timer);
+		timer=0;
+	}
+	timer=setTimeout(scroll_fn,300);
+});
+
+scroll_fn=function(){
+	alert();
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" maxlength="13">
+    <script>
+    // 格式化电话号码  错误封装
+    function _error(phone) {
+        if (phone.length === 8 || phone.length === 3) {
+            phone += ' ';
+        };
+    };
+
+    // 格式化电话号码  正确封装
+    function _correct(phone) {
+        if (phone.length === 8 || phone.length === 3) {
+            phone += ' ';
+        };
+        return phone;
+    };
+    </script>
+    <script>
+    var oInp = document.getElementsByTagName('input')[0];
+    oInp.onkeyup = function(e) {
+        var phone = this.value;
+
+        if (e.keyCode === 8) return;
+
+        /*// 封装前的代码
+        if (phone.length === 8 || phone.length === 3 ) {
+            phone += ' ';
+        };
+        this.value = phone;*/
+
+        /*// 错误,无法格式化号码。原因: 函数的调用并不是简单的打开过程
+        _error(phone);
+		this.value = phone;*/
+
+        // 正确
+        this.value = _correct(phone);
+    }
+    </script>
+</body>
+
+</html>
