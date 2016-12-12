@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.min.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p>{{message}}</p>
+        <input v-model="message" type="text">
+    </div>
+    <script>
+    new Vue({
+        el: "#box",
+        data: {
+            message: "Hello Vue.js!"
+        }
+    })
+    </script>
+</body>
+
+</html>
