@@ -1,0 +1,29 @@
+var products = [{
+	"imageUrl": "images/01.jpg",
+	"productText": "伊莲娜大码水溶镂空蕾丝裙",
+	"price": 249,
+	"originPrice": 365,
+	"total":1,
+	"productEvaluate": 361
+}, {
+	"imageUrl": "images/02.jpg",
+	"productText": "甘甘的世界夏季修身蕾丝裙",
+	"price": 368,
+	"originPrice": 457,
+	"total":2,
+	"productEvaluate": 1120
+}, {
+	"imageUrl": "images/03.jpg",
+	"productText": "韩都衣舍韩版条纹蓝色女装",
+	"price": 232,
+	"originPrice": 265,
+	"total":1,
+	"productEvaluate": 205
+}, {
+	"imageUrl": "images/04.jpg",
+	"productText": "AMII女百搭打底修身连衣裙",
+	"price": 79,
+	"originPrice": 105,
+	"total":2,
+	"productEvaluate": 199
+}]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.min.js"></script>
+</head>
+
+<body>
+<div id="box">	
+	<p>{{message}}</p>
+    <button v-on:click="reverseMessage">按钮</button>
+</div>
+
+    <script>
+    new Vue({
+        el: "#box",   /*不是p，而是要给它们加个父级div*/
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {  /*有s，是个json*/
+            reverseMessage: function() {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

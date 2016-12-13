@@ -1,0 +1,139 @@
+<!-- <view></view>
+条件渲染 <
+<view wx:if="{{view == 'WEBVIEW'}}"> WEBVIEW </view>
+<view wx:elif="{{view == 'APP'}}"> APP </view>
+<view wx:elif="{{view == 'MINA'}}"> MINA IS NOT APP </view>
+<view wx:else> HAHA </view>
+列表渲染
+<view wx:for-items="{{['小','程','序']}}">{{item}}</view>
+<view wx:for-items="{{['小','程','序']}}" wx:for-item="i">{{i}}</view>
+<view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+  <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
+    <view wx:if="{{i <= j}}">
+      {{i}} * {{j}} = {{i * j}}
+    </view>
+  </view>
+</view>
+列表渲染
+<view wx:for-items="{{['zero', 1, 2, 3, 4]}}"> {{item}} </view>
+列表渲染
+<view wx:for-items="{{array}}">{{item}}</view>
+列表渲染
+<view wx:for-items="{{msg}}">{{item.message}}</view>
+列表渲染
+<view wx:for-items="{{msg}}" wx:for-index="abc">{{abc}}对应{{item.message}}</view>
+模版
+定义模版
+<template name="staffName">
+  <view>
+    FirstName: {{firstName}}, LastName: {{lastName}}
+  </view>
+</template>
+使用以上模版
+<template is="staffName" data="{{...staffA}}"></template>
+<template is="staffName" data="{{...staffB}}"></template>
+<template is="staffName" data="{{...staffC}}"></template>
+模版
+<template name="odd">
+  <view> odd </view>
+</template>
+<template name="even">
+  <view> even </view>
+</template>
+<block wx:for="{{[1, 2, 3, 4, 5]}}">
+    <template is="{{item % 2 == 0 ? 'even' : 'odd'}}"/>
+</block>
+
+事件
+<view id="outter" bindtap="handleTap1" style="background-color: green">
+  outer view
+  <view id="middle" catchtap="handleTap2" style="background-color: blue">
+    middle view
+    <view id="inner" bindtap="handleTap3" style="background-color: red">
+      inner view
+    </view>
+  </view>
+</view>
+<icon type="success"></icon>
+<icon type="info"></icon>
+<icon type="warn"></icon>
+<icon type="waiting"></icon>
+<icon type="safe_success"></icon>
+<icon type="safe_warn"></icon>
+<icon type="success_circle"></icon>
+<view></view>
+<icon type="success_no_circle"></icon>
+<icon type="waiting_circle"></icon>
+<icon type="circle"></icon>
+<icon type="download"></icon>
+<icon type="info_circle"></icon>
+<icon type="cancel"></icon>
+<icon type="search"></icon>
+<icon type="clear"></icon>
+<progress percent="20" show-info />
+<progress percent="40" stroke-width="12" />
+<progress percent="60" color="pink" />
+<progress percent="80" active /> -->
+
+
+
+
+
+<!-- 我的商城 -->
+<view class="page">
+	<view class="search">
+		<view class="scan">
+			<image class="widgets-img" src="/image/ai3.png" />
+		</view>
+		<view class="search-input">
+			<image class="search-icon" src="/image/ath.png" />
+			<input placeholder="搜索商品" />
+		</view>
+        <view class="scan">
+            <image class="widgets-img" class="widgets-img" src="/image/ahv.png" mode="aspectFit" />
+        </view>
+	</view>
+	<scroll-view class="banner">
+		<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<block wx:for-items="{{imgURL}}">
+				<swiper-item>
+					<image src="{{item}}" />
+				</swiper-item>
+			</block>
+		</swiper>
+	</scroll-view>
+	<view class="logos">
+		<block wx:for-items="{{logos}}">
+			<view class="logoInfo">
+				<image src="{{item.image}}" />
+				<text class="logotext">{{item.title}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="miao">
+		<image src="/image/bej.png" />
+		<view class="miao_more">
+			<text>更多秒杀</text>
+			<image src="/image/arrowright.png" />
+		</view>
+	</view>
+	<scroll-view class="quicks" scroll-x="true">
+		<view class="quicks-box">
+			<block wx:for-items="{{quicks}}">
+				<view class="quicks-item">
+					<image src="{{item.image}}" />
+					<text>{{item.price}}</text>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<view class="ad">
+		<image src="/image/ad-0.jpg" />
+		<image src="/image/ad-big.jpg" />
+		<image src="/image/ad-1.jpg" />
+	</view>
+	<view class="ad-below">
+		<image src="/image/ad-left.jpg" mode="aspectFit" />
+		<image src="/image/ad-right.jpg" mode="aspectFit" />
+	</view>
+</view>

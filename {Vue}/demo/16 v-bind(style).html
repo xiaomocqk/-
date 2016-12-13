@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.min.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        // json格式
+        <h2 v-bind:style="{backgroundColor: isBgColor, fontSize: isFontSize+'px'}">Do you love me?</h2>
+
+        <!-- 对象语法 -->
+        // json对象
+        <h2 :style="styleObject">Yes,I am.</h2>
+
+        <!-- 数组语法 -->
+        // json对象集合（整体是一个数组）
+        <h2 :style="[baseStyles, overridingStyles]">I LOVE YOU.</h2>
+
+        <!-- 计算属性 -->
+        // 计算属性
+        <h2 :style="abc">Hello,Vue.js</h2>
+    </div>
+
+    <script>
+    new Vue({
+        el: "#box",
+
+        data: {
+            isBgColor: "red",
+            isFontSize: 50,
+            styleObject:{
+                backgroundColor: "#77c",
+                borderRadius: "10px",
+                border: "1px solid #ccc"
+            },
+
+
+            baseStyles: {
+                color:"green",
+                fontSize:"12px"
+            },
+            overridingStyles: {
+                border: "1px solid red",
+                fontSize: "60px"
+            }
+        },
+        computed: {
+            abc: function (){
+                return  this.styleObject 
+            }
+        }
+
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Three.js</title>
+<style>#canvas3d{width:100%;height: 100%}</style>
+<script src="Three.js"></script>
+</head>
+
+<body>
+    <div id="canvas3d"></div>
+    <script>
+    // 一、构建场景
+        var scene = new THREE.Scene();
+
+    // 二、构建透视相机    
+        var camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+    // 三、构建渲染器    
+        var renderer = new THREE.WebGLRenderer();
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        document.body.appendChild(renderer.domElement);
+        var geometry = new THREE.CubeGeometry(1,1,1);// 定义形状。这里表示一个长方体的,参数分别表示x,y,z轴宽度
+        var material = new THREE.MeshBasicMaterial({color: 0xcb56ca});// 定义颜色。表示16进制颜色值
+        var cube = new THREE.Mesh(geometry, material); scene.add(cube);// 创建该长方体
+        camera.position.z = 5;//相机的位置，值越大表示越远
+        function render() {
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);// 将场景和相机渲染出来
+            requestAnimationFrame(render);// 每次执行渲染(频率是机器的频率)
+        }
+        render();
+    </script>
+</body>
+</html>
