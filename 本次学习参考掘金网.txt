@@ -1,0 +1,24 @@
+https://gold.xitu.io/entry/574fe7c579bc440052f6d805
+
+已安装如下:
+  1.webpack 			cnpm install webpack -g					任意位置  全局
+  2.webpack			cnpm install webpack --save-dev				当前位置下  E:\Webpack
+  3.jquery			cnpm install jquery --save				当前位置下  E:\Webpack
+  4.style-loader和css-loader	cnpm install style-loader css-loader --save-dev		当前位置下  E:\Webpack
+  2.autoprefixer-loader		cnpm install autoprefixer-loader --save-dev		当前位置下  E:\Webpack
+
+
+
+
+
+
+未安装如下:
+  1.babel-loader等		npm install babel-loader babel-core babel-preset-es2015 --save-dev
+
+
+
+
+
+
+功能:
+  1.webpack --watch		开启监听
