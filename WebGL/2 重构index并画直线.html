@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Three.js</title>
+    <style>
+    html,body,#canvas-frame{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        cursor: move;
+        background: #eee;
+    }
+    </style>
+    <script src="Three.js"></script>
+</head>
+
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+
+
+    <script>
+    var renderer;
+    function initThree() {
+        renderer = new THREE.WebGLRenderer({
+            antialias: true //抗锯齿
+        });
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.getElementById('canvas-frame').appendChild( renderer.domElement ); //渲染器renderer的domElement指的就是canvas
+        renderer.setClearColor(0xffffff, 1.0);
+    }
+
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 10000); //透视相机。4个参数分别表示，视野角度(越大视野越开阔，物体越小)、横纵比(一般是宽高比，否则图形可能会被挤压变形)、相机允许离物体的最近距离、相机允许离物体的最远距离
+        camera.position.x = 0;//相机放置的位置(观察点)
+        camera.position.y = 0;
+        camera.position.z = 2000;
+        camera.up.x = 0;//相机以哪个方向为上方。其他为0,x为1时表示,侧着看，头顶方向是x轴正方向
+        camera.up.y = 1;//其他为0,y为1时表示,头顶天站着看
+        camera.up.z = 0;//其他为0,z为1时表示,躺着看
+        camera.lookAt({//相机看向哪个坐标(这里是原点)
+            x: 0,
+            y: 0,
+            z: 0
+        });
+    }
+
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene()
+    }
+
+    var light;
+    function initLight() {
+        light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);//平行光
+        light.position.set(100, 100, 200);
+        scene.add(light);
+    }
+
+    function initObject() {
+
+        var geometry = new THREE.Geometry();
+        var material = new THREE.LineBasicMaterial({
+            vertexColors: THREE.VertexColors//顶点颜色,就是线条的颜色会根据顶点来计算
+        });
+        var color1 = new THREE.Color(0x444444),
+            color2 = new THREE.Color(0xFF0000);
+
+        // 线条两个端点的颜色
+        var p1 = new THREE.Vector3(-100, 0, 100);
+        var p2 = new THREE.Vector3(100, 200, 0);
+        
+        geometry.vertices.push(p1);//能够使用push方法，是因为geometry.vertices是一个数组
+        geometry.vertices.push(p2);
+        geometry.colors.push(color1, color2);//geometry中colors表示顶点的颜色，必须材质中vertexColors等于THREE.VertexColors 时，颜色才有效，如果vertexColors等于THREE.NoColors时，颜色就没有效果了。那么就会去取材质中color的值，这个很重要，大家一定记住。
+
+        var line = new THREE.Line(geometry, material, THREE.LineSegments);// THREE.Line方法画线
+        scene.add(line);
+    }
+
+    function render() {
+        renderer.clear();
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+    }
+
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        initObject();
+        render();
+    }
+    </script>
+</body>
+
+</html>

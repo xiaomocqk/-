@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>THREE.js</title>
+    <style>
+    html,
+    body,
+    #canvas-frame {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        cursor: move;
+        background: #eee;
+    }
+    canvas{
+        background: #eee;
+    }
+    </style>
+    <script src="Three.js"></script>
+</head>
+
+<body>
+    <h1 style="position: absolute;left: 200px;top:20px;z-index: 999;color: #fff">必须要在服务器环境下打开</h1>
+
+    <script>
+    var renderer, camera, scene;
+    var mesh;
+
+    init();
+    aniamte();
+
+    function init(){
+        // 创建渲染器
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );//渲染器的dom元素就是canvas
+
+        // 创建透视相机
+        camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 500;
+
+        // 创建场景
+        scene = new THREE.Scene();
+
+        // 创建平面几何(*必须是逆时针*)
+        var geometry = new THREE.PlaneGeometry( 500, 500, 1, 1 );//...
+        geometry.vertices[0].uv = new THREE.Vector2(0,0);
+        geometry.vertices[1].uv = new THREE.Vector2(2,0);
+        geometry.vertices[2].uv = new THREE.Vector2(2,2);
+        geometry.vertices[3].uv = new THREE.Vector2(0,2);
+
+        // 将图片作为纹理
+        var texture = THREE.ImageUtils.loadTexture("a.jpg");
+        
+        /*警示：
+        *   虽然使用THREE.ImageUtils.loadTexture也没问题
+        *   不过估计是为了适应Javascript的异步式编程
+        *   ThreeJS也逐步将一些会阻塞的api转换为异步回调的模式
+        *   原有的老api会被标记为deprecated(弃用)
+        */
+
+        // 将纹理赋给材质
+        var material = new THREE.MeshBasicMaterial({map: texture});
+
+        // 创建确定的多边形
+        var mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        // 绑定事件
+        window.addEventListener('resize', windowRisize, false);
+    }
+
+    function windowRisize(){
+        // 加定时器只是我的一贯作风
+        clearTimeout(this.timer);
+        this.timer = setTimeout(function(){
+            camera.aspect = window.innerWidth / window.innerHeight;// 重新计算横纵比
+            camera.updateProjectionMatrix();
+            // 渲染器大小重新计算
+            renderer.setSize( window.innerWidth, window.innerHeight);
+       },200);
+    }
+
+    function aniamte(){
+        requestAnimationFrame( aniamte );
+        renderer.render( scene, camera );
+    }
+    </script>
+</body>
+
+</html>
