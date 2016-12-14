@@ -1,1 +1,0 @@
-document.write("O(∩_∩)O哈哈~");
