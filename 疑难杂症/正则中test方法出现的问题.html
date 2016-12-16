@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则中test方法出现的问题</title>
+</head>
+<body>
+	<script>
+		var re = /^[1~9]\d*$/g;
+		var str = 123;
+
+		alert( re.test(str) );
+		// alert(re.lastIndex );
+		alert( re.test(str) );
+		// alert(re.lastIndex );
+		
+		/*原因：test会修改lastIndex的值
+		解决办法：
+			1.去掉g
+			2.每次都重置re.lastIndex = 0;*/
+	</script>
+</body>
+</html>

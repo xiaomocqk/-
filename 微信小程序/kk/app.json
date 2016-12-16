@@ -1,0 +1,46 @@
+{
+    "pages": [
+        "pages/home/index"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#000000",
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "我的商城",
+        "backgroundColor": "#eeeeee",
+        "backgroundTextStyle": "dark"
+    },
+    "tabBar": {
+        "color": "#333333",
+        "selectedColor": "#3cc51f",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [{
+            "pagePath": "pages/home/index",
+            "iconPath": "image/home.png",
+            "selectedIconPath": "image/home-hl.png"
+        }, {
+            "pagePath": "page/category/index",
+            "iconPath": "image/category.png",
+            "selectedIconPath": "image/category-hl.png"
+        }, {
+            "pagePath": "page/category/index",
+            "iconPath": "image/explore.png",
+            "selectedIconPath": "image/explore-hl.png"
+        }, {
+            "pagePath": "page/category/index",
+            "iconPath": "image/cart.png",
+            "selectedIconPath": "image/cart-hl.png"
+        }, {
+            "pagePath": "page/category/index",
+            "iconPath": "image/me.png",
+            "selectedIconPath": "image/me-hl.png"
+        }]
+    },
+    "networkTimeout":{
+        "request":10000,
+        "connectSocket":10000,
+        "uploadFile":10000,
+        "downloadFile":10000
+    },
+    "debug":true
+}

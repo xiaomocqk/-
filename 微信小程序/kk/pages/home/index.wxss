@@ -1,0 +1,166 @@
+.search
+{
+    display: flex;
+
+    height: 50rpx;
+    padding: 20rpx 0;
+
+    background-color: #eee;
+
+    -webkit-align-items: center;
+            align-items: center;
+}
+.scan
+{
+    text-align: right;
+
+    flex: 1;
+}
+.widgets-img
+{
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 15rpx;
+
+    vertical-align: top;
+}
+.search-input
+{
+    display: flex;
+
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 80%;
+    height: 90%;
+    padding: 5rpx;
+
+    -webkit-border-radius: 6px;
+            border-radius: 6px;
+    background-color: #fff;
+
+    align-items: center;
+}
+.search-icon
+{
+    width: 30rpx;
+    height: 30rpx;
+}
+.search-input input
+{
+    font-size: 12px;
+
+    width: 100%;
+    padding-left: 20rpx;
+}
+.banner
+{
+    width: 100%;
+    height: 365rpx;
+
+}
+.banner swiper
+{
+    height: 100%;
+}
+.banner image
+{
+    width: 100%;
+    height: 100%;
+}
+.logos
+{
+    display: flex;
+
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.logoInfo
+{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    width:150rpx; 
+	height: 150rpx;
+	margin: 10px 0;
+}
+.logoInfo image {
+	width: 100rpx;
+	height: 100rpx;
+}
+.logotext{
+	color: #aaa;
+	font-size: 22rpx;
+	margin-top: 20rpx;
+}
+.miao {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 40rpx;
+	margin: 10rpx 0;
+	width: 100%;
+	justify-content:space-between;
+}
+.miao image {
+	width: 150rpx;
+	height: 100%;
+	margin-left: 20rpx;
+}
+.miao_more {
+	display: flex;
+	align-items: center;
+}
+.miao_more image {
+	width: 20rpx;
+	height: 20rpx;
+	margin: 0 20rpx;
+}
+.miao text {
+	font-size: 24rpx;
+	line-height: 40rpx;
+	color: #666;
+}
+.quicks {
+	width: 100%;
+	height: 250rpx;
+	padding: 20rpx 0;
+	overflow: hidden;
+}
+.quicks-box {
+	height: 100%;
+	display: flex;
+}
+.quicks-item {
+	height:100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 20rpx
+}
+.quicks-item image {
+	width: 170rpx;
+	height: 170rpx;
+}
+.quicks-item text {
+	margin-top: 10rpx;
+	font-size: 14px;
+	color: #ff0000;
+	font-weight: bold;
+}
+.ad {
+	display: flex;
+	padding: 20rpx;
+}
+.ad image {
+	height: 290rpx;
+}
+.ad-below {
+	padding: 0 20rpx;
+	height: 200rpx;
+	display: flex;
+}
+.ad-below image {
+	height: 100%;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+    <style>
+        h2{
+            color: lightskyblue;
+            font-size: 24px;
+        }
+        strong {
+            color: lightgreen;
+            font-size: 24px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>#props</h2>
+    <h4>在 Vue.js 中，父子组件的关系可以总结为 props down, events up 。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。</h4>
+    <h4>组件实例的作用域是孤立的。$$$ 是父组件用来传递数据的一个自定义属性，可以使用 props 把数据传给子组件。</h4>
+    
+    <div id="box1">
+        <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
+        利用$$$接口向组件实例传数据:<my-tag $$$="你好"></my-tag>
+        <br>
+
+        <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
+        $$$接口绑定数据再传向组件实例:<my-tag v-bind:$$$="msg"></my-tag>
+        <br>
+
+        <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
+        $$$接口传入的是字符串:<my-tag $$$="1+2"></my-tag>
+        <br>
+        
+        <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
+        如果需要传入数字，只需要绑定$$$：<my-tag v-bind:$$$="1+2"></my-tag>
+    </div>
+
+    <h2>#单向数据流</h2>
+    <h4>prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。</h4>
+
+
+    <script>
+
+    // 父组件
+    Vue.component('my-tag', {
+        template: '<strong>{{ $$$ }}</strong>',
+
+        // 如果你的 $$$ 换成例如 oProp 名称，那么在 html 写实例的时候就要写成 o-prop
+        props: ['$$$']
+    });
+
+    new Vue({
+        el: '#box1',
+        data:{
+            msg:"Hello, Vue.js!"
+        }
+    })
+    </script>
+</body>
+
+</html>

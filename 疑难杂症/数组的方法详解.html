@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的方法详解</title>
+	<style>
+		body{
+			font-size: 16px;
+			font-weight: bold;
+			color: #fff;
+			line-height: 2;
+			background-color: rgba(50, 50, 50, 1.0)
+		}
+		h3{margin:0;color: #fcf;}
+		strong {
+			font-size: 20px;
+			color: red;
+		}
+		span {
+			color: #459dff;
+		}
+	</style>
+</head>
+<body>
+<pre>
+	<strong>** 以下无特殊说明，则表示该方法不改变原始数组 **</strong>
+	<h3>基本知识1</h3>
+	var arr = new Array(5);
+	console.log(arr);			//	[undefined,undefined,undefined,undefined,undefined]
+
+	<h3>基本知识2</h3>
+	var arr = new Array([5]);
+	console.log(arr);			//	[5]
+
+	<h3>1. concat():
+	返回一个新数组。这个新数组是由两个或更多数组组合而成的</h3>
+	var arr1 = [1,2,3];
+	var arr2 = ["a","b","c"];
+
+	console.log( arr1.concat(arr2) );	// 	[1, 2, 3, "a", "b", "c"]
+	console.log( arr1 );			//	[1,2,3]
+	console.log( arr2 );			//	["a","b","c"]
+
+	<h3>2. join():
+	返回字符串值。将元素拼接成字符串</h3>
+	var arr = ['hello', 123, {name:"mo"}];
+
+	console.log( arr.join('-') );			//	字符串"hello-123-[object Object]"
+	console.log( arr );			//	["hello", 123, Object]
+
+	<h3>3. split():  <span>[字符串方法]</span>
+	但是返回数组,与join()方法功能相反。字符串以分隔符分隔开来组成数组。</h3>
+	var str = "hello javascript!";
+
+	console.log( str.split(' ') );		//	["hello", "javascript!"]
+	console.log( str );			//	字符串"hello javascript!"
+
+	<h3>4. slice():
+	返回一个数组的一段,不改变原始数组</h3>
+	var arr = [1,2,3,4,5,6,7,8,9,10];
+
+	var arr2 = arr.slice(1,5);		//	范围：[i,j)
+
+	console.log( arr2 );			//	[2, 3, 4, 5]
+
+	<h3>5. splice():  <strong>[改变原始数组]</strong>
+	在原始数组上添加(插入)/删除元素(可多个),集成push(),pop(),shift().unshift。添加：返回长度；删除：返回删除的元素</h3>
+
+	var arr = [1,2,3,"apple"];
+
+	console.log( arr.splice(0,2) );	// [1,2]  从索引为0元素开始往后面共删除2个元素,可以是删除0个
+	console.log( arr );				// [3]
+
+	console.log( arr.splice(1,0,"Lemon","Kiwi") );  // []
+	console.log( arr );				// [3, "Lemon", "Kiwi", "apple"]
+
+	<h3>6. sort():  <strong>[改变原始数组]</strong>
+	如果没有参数那么将按照字母顺序排列;
+	如果要用从大到小顺序排列里面需要带参数sort(function(a,b){return b-a})</h3>
+	var arr = [22,"58","a","你好",, ,{name: "momo"}];
+	console.log( arr.sort() );		//	[22, "58", Object, "a", "你好"]  为空或者空格不会被排序
+
+	console.log( function(a,b){return b-a} );		//	["58", 22, "a", "你好", Object] 自动将字符串类型的数字转换为数字类型
+
+<strong>** 以下均会[改变原始数组]↓ **</strong>
+	<h3>7. push():  在数组的最后添加元素，并返回新长度值</h3>
+	<h3>8. pop():  删除数组中的最后一个元素，并返回该元素</h3>
+	<h3>8. shift():  删除数组中的第一个元素，并返回该元素</h3>
+	<h3>8. unshift():  插入数组开始位置并返回该数组。</h3>
+	<h3>8. reverse():  返回一个元素顺序被反转的数组</h3>
+</pre>
+</body>
+</html>

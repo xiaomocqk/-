@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.min.js"></script>
+</head>
+
+<body>
+    <p v-html="oA"></p>
+    <script>
+    new Vue({
+    	el:"p",
+        data: {
+            oA: "<a href='#'>hello, Vue.js!</a>"
+        }
+    })
+    </script>
+    <!-- 你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击。请只对可信内容使用 HTML 插值，绝不要对用户提供的内容插值。 -->
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>js返回上一页并刷新的几种方法：</h1>
+	<p>
+		&lt;a href="javascript:history.go(-1)">返回上一页<br> 
+		&lt;a href="javascript:location.reload()">刷新当前页面<br> 
+		&lt;a href="javascript:" onclick="history.go(-2); ">返回前两页<br> 
+		&lt;a href="javascript:" onclick="self.location=document.referrer;">返回上一页并刷新<br> 
+		&lt;a href="javascript:" onclick="history.back(); ">返回上一页<br>
+	</p>
+	<p>其中：<br>
+	history.back(-1):直接返回当前页的上一页，数据全部消息，是个新页面<br>
+	history.go(-1):也是返回当前页的上一页，不过表单里的数据全部还在</p>
+</body>
+</html>
