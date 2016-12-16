@@ -1,0 +1,1 @@
+browser-sync start --server --files "build/**,src/**,package.json,webpack.config.js"

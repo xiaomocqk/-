@@ -1,0 +1,6 @@
+实用功能: 
+
+	1.	$ webpack -w					监听入口文件的变化
+	2.	$ webpack -p					压缩混淆
+	3.	$ webpack -d					生成map映射
+	4.	$ webpack --display-error-details		出错时查看信息
