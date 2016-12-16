@@ -10,8 +10,6 @@ module.exports = {
 	entry: { //可以多个，会按照顺序进行打包。entry可以是数组或者json对象。json的方法会分别生成两个js
 		entry: './src/entry.js',
 		alert: './src/alert.js'
-			/*,
-					css: './src/css/a.css'*/
 	},
 	/*entry:['./src/entry.js', './src/alert.js'], //这种写法会将这两个js文件默认 合并 成一个名为 main.js */
 
