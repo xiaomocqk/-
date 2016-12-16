@@ -1,8 +1,11 @@
 var webpack = require('webpack');
 
-// var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js'); // 引入插件(这是一个自带的内置插件,用来将模块内重复的部分单独打包)。注意：必须把common.js也引入html中，并且在和它同时生成的模块(这里是entry.js和alert.js)之前引入。这里我们暂时先不打算开启
+/*var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js'); // 引入插件(这是一个自带的内置插件,用来将模块内重复的部分单独打包)。注意：必须把common.js也引入html中，并且在和它同时生成的模块(这里是entry.js和alert.js)之前引入。这里我们暂时先不打算开启*/
 
 /*var ExtractTextPlugin = require("extract-text-webpack-plugin");// 安装后引入插件。将css单独打包出来，这里我们暂时不开启*/
+
+/*var HtmlWebpackPlugin = require('html-webpack-plugin');*/ //自动生成html文件,会自动引入一起打包出来的js
+
 
 module.exports = {
 	devtool: 'eval-source-map', //在学习阶段以及在小到中性的项目上，eval-source-map是一个很好的选项，不过记得只在开发阶段使用它
@@ -47,5 +50,12 @@ module.exports = {
 		}
 	},
 
-	plugins: [ /*commonsPlugin,*/ /*new ExtractTextPlugin("[name].css")*/]
+	plugins: [
+	/*commonsPlugin,*/
+	/*new ExtractTextPlugin("[name].css"),*/
+	/*new HtmlWebpackPlugin(), // 如果需要生成多个,可以多new几个实例(默认名称是index.html)
+	new HtmlWebpackPlugin({
+		title: '这是由webpack生成的话h5页面',
+		filename: 'webpack-index.html'
+	})*/]
 }
