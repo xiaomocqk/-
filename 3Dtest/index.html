@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="Three.js"></script>
+    <script type="text/javascript" src="OBJLoader.js"></script>
+    <script type="text/javascript" src="OrbitControls.js"></script>
+</head>
+
+<body onload="init()">
+    <!-- <canvas id="newCanvas"></canvas> -->
+    <div id="canvas-frame"></div>
+    <script type="text/javascript">
+    //创建场景
+    var scene = new THREE.Scene();
+    // 创建相机
+    var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 12000); //60：视角；width/height：宽高比；1：近平面；12000：远平面
+    // 创建光线
+    var light = new THREE.DirectionalLight(0xffffff); //光源颜色
+    // 创建渲染器
+    var renderer = new THREE.WebGLRenderer({ antialias: true }); //抗锯齿。如果不需要父级div而是直接创建canvas标签，可以var renderer = new THREE.WebGLRenderer({canves: document.getElementById('newCanvas')})
+
+    var mesh;
+
+    function init() {
+        // renderer
+        renderer.setClearColor(0x178F09); //画布颜色
+        renderer.setSize(window.innerWidth, window.innerHeight); //画布大小
+        document.getElementById('canvas-frame').appendChild(renderer.domElement); //添加画布
+
+        // camera
+        camera.position.set(0, 1000, 2000); //相机位置
+        camera.lookAt(scene.position); //lookAt()设置相机所看的位置。等同于camera.lookAt( new THREE.Vector3(0, 0, 0) )
+        scene.add(camera); //把相机添加到场景中
+
+        // light
+        light.position.set(100, 20, 50); //光源位置
+        scene.add(light); //光源添加到场景中
+
+        // axes
+        var axes = new THREE.AxisHelper(800);
+        scene.add(axes); //坐标轴添加到场景中
+
+        // loader
+        var loader = new THREE.OBJLoader(); //在init函数中，创建loader变量，用于导入模型
+        loader.load('1.obj', function(geometry) { //第一个表示模型路径，第二个表示完成导入后的回调函数，一般我们需要在这个回调函数中将导入的模型添加到场景中
+            mesh = geometry; //储存到全局变量中
+            scene.add(mesh); //将导入的模型添加到场景中
+        });
+
+        // controls
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    };
+
+    (function render() {
+        renderer.render(scene, camera); //调用WebGLRenderer的render函数刷新场景
+        requestAnimationFrame(render); //动画帧循环
+    })();
+    </script>
+</body>
+
+</html>
