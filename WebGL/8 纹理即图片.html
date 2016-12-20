@@ -45,7 +45,7 @@
         scene = new THREE.Scene();
 
         // 创建平面几何(*必须是逆时针*)
-        var geometry = new THREE.PlaneGeometry( 500, 500, 1, 1 );//...
+        var geometry = new THREE.PlaneGeometry( 500, 500, 1, 1 ); // 宽高和对应的分段
         geometry.vertices[0].uv = new THREE.Vector2(0,0);
         geometry.vertices[1].uv = new THREE.Vector2(2,0);
         geometry.vertices[2].uv = new THREE.Vector2(2,2);
