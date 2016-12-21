@@ -10,7 +10,7 @@ var webpack = require('webpack');
 module.exports = {
 	devtool: 'eval-source-map', //在学习阶段以及在小到中性的项目上，eval-source-map是一个很好的选项，不过记得只在开发阶段使用它
 
-	entry: { //可以多个，会按照顺序进行打包。entry可以是数组或者json对象。json的方法会分别生成两个js
+	entry: { //一般是一个。可以多个，会按照顺序进行打包。entry可以是数组(生成一个js)或者json对象(生成两个js)
 		entry: './src/entry.js',
 		alert: './src/alert.js'
 	},

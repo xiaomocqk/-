@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <title>购物车</title>
+    <script src="../js/fontSize.js"></script>
+    <link rel="stylesheet" href="../css/shopping-cart.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="head">
+            <div class="top clearfix">
+                <a href="javascript:history.go(-1)" class="goback"></a>
+                <h1>购物车(<span id="top-num">{{ length }}</span>)</h1>
+                <span class="top-edit">编辑</span>
+                <a href="#" class="link">我的订单</a>
+            </div>
+        </div>
+        <!-- 购物车列表 -->
+        <ul class="list">
+            <li class="block" v-for="(item,index1) in products">
+                <div class="list-head">
+                    <i class="select shop-select" @click="shopAll(index1)"></i>
+                    <a class="shop" href="">{{ item.shopName }}</a>
+                    <span class="shop-edit">编辑</span>
+                </div>
+                <!-- 该店铺的所有商品 -->
+                <ol class="list-body">
+                    <li v-for="(aLi,index2) in item.lists">
+                        <i class="select product-select" @click="check(index1,index2)"></i>
+                        <a class="detail" :href="aLi.link">
+                            <div class="product-img"><img src="" alt=""></div>
+                            <div class="info">
+                                <strong>{{ aLi.details }}</strong>
+                                <span class="info-attr">{{ aLi.attitude }}</span>
+                                <div class="price clearfix">
+                                    <span>¥ <em class="per currency">{{ aLi.price | currency }}</em>&nbsp;</span>
+                                    <small>¥ <em class="currency">{{ aLi.originalPrice | currency }}</em></small>
+                                    <span class="quantity">&times;<em>{{ aLi.total }}</em></span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <!-- 底部结算 -->
+        <ul class="bottom bottom-sum clearfix">
+            <li class="all-above" @click="aboveAll">
+                <i class="select"></i>
+                <span>&nbsp;全选</span>
+            </li>
+            <li class="bottom-l">
+                合计(不含运费):
+                <span>¥ <em id="sum">0.00</em></span>
+            </li>
+            <li class="bottom-r">
+                结算(<em id="total">0</em>)
+            </li>
+        </ul>
+        <!-- 底部占位元素 -->
+        <div class="placeholder"></div>
+        <!-- 底部导航栏 -->
+        <div class="foot-nav">
+            <a href="javascript:void(0);" class="home">商城首页</a>
+            <a href="javascript:void(0);" class="abroad">海外直供</a>
+            <a href="javascript:void(0);" class="userPic"></a>
+            <a href="javascript:void(0);" class="buyCar">购物车</a>
+            <a href="javascript:void(0);" class="user">个人中心</a>
+        </div>
+    </div>
+    <script src="../js/zepto.min.js"></script>
+    <script src="../vue-2.1.3.min.js"></script>
+    <script src="../index.js"></script>
+</body>
+
+</html>
