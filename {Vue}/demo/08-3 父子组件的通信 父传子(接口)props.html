@@ -15,6 +15,12 @@
             font-size: 24px;
             text-decoration: underline;
         }
+        em{
+            padding-left: 30px;
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -25,19 +31,24 @@
     
     <div id="box1">
         <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
-        利用$$$接口向组件实例传数据:<my-tag $$$="你好"></my-tag>
+        利用$$$接口向组件实例传数据（直接让接口携带值）:<my-tag $$$="你好"></my-tag>
+        <em>$$$="你好"</em>
         <br>
 
         <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
-        $$$接口绑定数据再传向组件实例:<my-tag v-bind:$$$="msg"></my-tag>
+        $$$接口绑定数据再传向组件实例（从data中取值再让接口携带）:<my-tag v-bind:$$$="msg"></my-tag>
+        <em>v-bind:$$$="msg"（动态props）</em>
+        <input type="text" v-model="msg">
         <br>
 
         <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
-        $$$接口传入的是字符串:<my-tag $$$="1+2"></my-tag>
+        $$$接口传入的是字符串（接口携带字符串连接）:<my-tag $$$="1+2"></my-tag>
+        <em>$$$="1+2"</em>
         <br>
         
         <!-- 组件实例(又称 子组件)的作用域是孤立的 -->
-        如果需要传入数字，只需要绑定$$$：<my-tag v-bind:$$$="1+2"></my-tag>
+        如果需要传入数字，只需要绑定$$$（接口携带数值运算）：<my-tag v-bind:$$$="1+2"></my-tag>
+        <em>v-bind:$$$="1+2"</em>
     </div>
 
     <h2>#单向数据流</h2>
@@ -47,11 +58,11 @@
     <script>
 
     // 父组件
-    Vue.component('my-tag', {
-        template: '<strong>{{ $$$ }}</strong>',
+    Vue.component('my-tag', {//模版的标签对名称
+        template: '<strong>{{ $$$ }}</strong>',//接口对应的值
 
         // 如果你的 $$$ 换成例如 oProp 名称，那么在 html 写实例的时候就要写成 o-prop
-        props: ['$$$']
+        props: ['$$$']//接口名称
     });
 
     new Vue({

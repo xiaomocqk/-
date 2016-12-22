@@ -49,15 +49,12 @@ $(function() {
 		data: data, //绑定数据来源
 		methods: {
 			// 逐一勾选的样式切换
-			check: function(index1, index2) {
-				var e = window.event,
-					$this = $(e.currentTarget),
+			check: function(e) {
+				var $this = $(e.currentTarget),
 					thisBody = $this.closest('.list-body'),
 					thisHeadSelect = thisBody.prev().find('.select'),
 					thisBodySelect = thisBody.find('.select'),
-					thisBodySelected = null,
-					price = data.products[index1].lists[index2].price,
-					total = data.products[index1].lists[index2].total;
+					thisBodySelected = null;
 
 				// 样式切换
 				$this.toggleClass('selected');
@@ -69,7 +66,7 @@ $(function() {
 				// 是否勾选底部全选
 				bottomCheck();
 
-				// 计算数量及金额(没有用计算属性,通过索引index1,index2可以更好取到值)
+				// 计算数量及金额
 				calculate();
 			},
 
@@ -100,10 +97,8 @@ $(function() {
 				// 计算价格及数量
 				calculate();
 			}
-
 		}
 	});
-
 });
 
 // 是否勾选底部
@@ -114,7 +109,7 @@ function bottomCheck() {
 
 	listHeadSelected.length === listHeadSelect.length ? bottomSelect.addClass('selected') : bottomSelect.removeClass('selected');
 }
-// 计算价格及数量(与在vue实例中的methods对象内利用索引index创建方法相比，省去了各种全选导致的重复问题)
+// 计算价格及数量(与在vue实例中的methods对象内利用索引index创建方法相比，省去了各种全选导致的重复问题。最优)
 function calculate() {
 	var details = $('.list-body .selected').next('.detail'),
 		prices = details.find('.per'),

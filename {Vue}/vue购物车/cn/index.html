@@ -30,8 +30,8 @@
                 </div>
                 <!-- 该店铺的所有商品 -->
                 <ol class="list-body">
-                    <li v-for="(aLi,index2) in item.lists">
-                        <i class="select product-select" @click="check(index1,index2)"></i>
+                    <li v-for="aLi in item.lists">
+                        <i class="select product-select" @click="check"></i>
                         <a class="detail" :href="aLi.link">
                             <div class="product-img"><img src="" alt=""></div>
                             <div class="info">

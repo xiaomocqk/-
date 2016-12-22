@@ -23,7 +23,7 @@
     </div>
     <script>
     Vue.component('my-tag', {
-        template: '<button @click="++add">{{ add }}</button>',
+        template: '<button @click="add += 1">{{ add }}</button>',
 
         // data 必须是函数,不能是data:{}。 
         data:function(){

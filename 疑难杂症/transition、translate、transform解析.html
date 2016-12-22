@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+    h2 {
+        color: #1C98FF;
+    }
+    
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #FD0606;
+        color: #fff;
+        font-size: 20px;
+        line-height: 100px;
+        text-align: center;
+    }
+    p{
+    	font-size: 20px;
+    }
+    code{
+    	font-size: 20px;
+    	font-weight: 800;
+    	color: #FF89A3;
+    }
+    .position{
+    	position: absolute;
+    	left: 500px;
+    	top: 168px;
+    	color: #000;
+    }
+    
+    .box1:hover {
+        width: 200px;
+        background: cyan;
+        transition: background 800ms;
+        /* 只有背景有过渡效果 */
+    }
+    #id{
+    	padding-left: 50px;
+    }
+    .box2-1:hover{
+		transform: translate(20px,20px)
+    }
+    .box2-2:hover {
+    	transform: scale(1.8, 2);
+    }
+    .box2-3:hover {
+    	transform: rotate(30deg);
+    }
+    .box2-4:hover {
+    	transform: skew(10deg, 45deg);
+    }
+    </style>
+</head>
+
+<body style="background: #FBDECE">
+	<h1>需要加上浏览器内核前缀 webkit、moz、o</h1>
+    <h2>#1. transiton 动画</h2>
+    <p>transition 属性是一个简写属性</p>
+    <div class="box box1">transition</div>
+    <code class="position">{ <br>&nbsp;&nbsp;width: 200px;<br>&nbsp;&nbsp;background: cyan;<br>&nbsp;&nbsp;transition: background 800ms<br> }</code>
+    <p>默认值：<strong>transition: all 0 ease 0</strong></p>
+    <p>四个过渡属性：<code>transition-property，transition-duration，transition-timing-function，transition-delay</code></p>
+    <hr>
+    <h2>#2. transform 形变(translate是产生位移)。都可以进行3d变换</h2>
+	<p>transform有几个属性:移动<code>translate</code>，缩放<code>scale</code>，旋转<code>rotate</code>，倾斜<code>skew</code></p>
+    <div id="id">
+		<strong>translate 移动</strong>
+		<div class="box box2-1">translate</div>
+		<code class="position" style="top: 540px;">{transform: translate(20px,20px)}</code>
+		<hr>
+		<strong>scale 缩放</strong>
+		<div class="box box2-2">scale</div>
+		<code class="position" style="top: 700px;">{transform: scale(1.8, 2)}</code>
+		<hr>
+		<strong>rotate 旋转</strong>
+		<div class="box box2-3">rotate</div>
+		<code class="position" style="top: 840px;">{transform: rotate(30deg)}顺时针为正</code>
+		<hr>
+		<strong>skew 倾斜</strong>
+		<div class="box box2-4">skew</div>
+		<code class="position" style="top: 940px;">{transform: skew(10deg, 45deg)}</code>
+		<hr>
+	</div>
+    <h2>#3. aniamtion 动画</h2>
+    <p>结合@keyframes</p>
+    <div class="box box4">未演示</div>
+</body>
+
+</html>
