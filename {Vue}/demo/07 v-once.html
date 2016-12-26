@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
     <script src="../vue-2.1.3.min.js"></script>
 </head>
-<body>
-	<div id="box">
-		<p v-once="message">{{message}}</p>
-		<input v-model="message" type="text">
-	</div>
 
-	<script>
-		new Vue({
-			el: "#box",
-			data: {
-				message:"hello Vue.js!"
-			}
-		})
-	</script>
+<body>
+    <div id="box">
+        <p v-once="message">{{message}}</p>
+        <input v-model="message" type="text">
+    </div>
+    <script>
+    new Vue({
+        el: "#box",
+        data: {
+            message: "hello Vue.js!"
+        }
+    })
+
+    // 当有大量的静态内容是，在使用 组件 的时候,有时我们可以考虑使用v-once
+    Vue.component('terms-of-service', {
+        template: '\
+    <div v-once>\
+      <h1>Terms of Service</h1>\
+      ... a lot of static content ...\
+    </div>\
+  '
+    })
+    </script>
 </body>
+
 </html>
