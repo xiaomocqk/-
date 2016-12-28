@@ -11,7 +11,7 @@
     <h1>全局组件</h1>
     <ul>
         <!-- 让接口$代理xxx,这样template中不存在xxx，所以就是$ -->
-        <my-tag v-bind:$="xxx" v-for="xxx in abcList"></my-tag>
+        <my-tag v-bind:$$$="xxx" v-for="xxx in abcList"></my-tag>
     </ul>
     
     <h1>局部组件</h1>
@@ -22,7 +22,7 @@
     Vue.component('my-tag', { /*新建一个组件名称为abc的全局组件【不能有大写,可以用"-"】*/
         props: ['$'],
         /*子元素通过props接口实现了与父亲元素很好的解耦*/
-        template: '<li>{{$.fruit}}</li>' /*模板*/
+        template: '<li>{{$$$.fruit}}</li>' /*模板*/
     })
     new Vue({
         el: 'ul',
