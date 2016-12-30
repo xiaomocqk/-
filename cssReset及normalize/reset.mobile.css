@@ -7,10 +7,12 @@ html,body{
 }
 body {
     margin: 0;
-    font-family: Microsoft YaHei, SimHei, 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
-    -webkit-user-select: none;
+    -webkit-user-select: none;//字体无法被选中
     -webkit-text-size-adjust: 100%;
     -webkit-overflow-scrolling: touch;
+}
+body,input {
+    font-family: Microsoft YaHei, SimHei, 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6,strong,i,em,th {
@@ -39,7 +41,6 @@ input {
     vertical-align: top;
     border: none;
     outline: none;
-    font-family: Microsoft YaHei, SimHei, 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
 }
 
 textarea {
@@ -68,7 +69,7 @@ th,td {
 .clearfix {
     zoom: 1;
 }
-/* 当行超出 */
+/* 单行超出 */
 .ell {
     white-space: nowrap;
     overflow: hidden;

@@ -103,7 +103,7 @@ td {
 .clearfix {
     zoom: 1;
 }
-/* 当行超出 */
+/* 单行超出 */
 .ell {
     white-space: nowrap;
     overflow: hidden;
