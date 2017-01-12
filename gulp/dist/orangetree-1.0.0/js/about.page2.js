@@ -1,0 +1,1 @@
+!function(){function n(o,t){t=t||0,o.eq(t).addClass("fadeInDown").on("animationend",function(){t++,t!==o.length&&n(o,t)})}var o=$(".page2").offset().top,t=-150,a=$(".page2 .text span");$(document).on("scroll",function(){$(this).scrollTop()>o+t&&n(a)})}();

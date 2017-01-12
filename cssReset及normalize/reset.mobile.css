@@ -15,7 +15,7 @@ body,input {
     font-family: Microsoft YaHei, SimHei, 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6,strong,i,em,th {
+h1,h2,h3,h4,h5,h6,strong,i,b,em,th {
     font-size: 100%;
     font-weight: normal;
     font-style: normal;
