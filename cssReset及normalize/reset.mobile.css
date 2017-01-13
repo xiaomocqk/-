@@ -69,21 +69,6 @@ th,td {
 .clearfix {
     zoom: 1;
 }
-/* 单行超出 */
-.ell {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-/* 多行超出 */
-.clamp {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
 /* CSS3 */
 a,button,optgroup,select {
     outline: 0;
@@ -103,4 +88,18 @@ input,textarea {
 
 button,html [type='button'],[type='reset'],[type='submit'] {
     -webkit-appearance: button;
+}
+/* 单行超出 */
+.ell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* 多行超出 */
+.clamp {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
