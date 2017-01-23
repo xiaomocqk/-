@@ -1,0 +1,16 @@
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(-20%, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fadeInRight {
+    animation: fadeInRight 1.5s forwards ease-in-out;
+}
+
+/* transiton的做法会导致动画有明显的卡祯 */

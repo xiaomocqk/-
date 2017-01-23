@@ -1,1 +1,0 @@
-function fadeInUpOrder(n){n[0].addClass("fadeInUp").on("animationend",function(){n.splice(0,1),0!==n.length&&fadeInUpOrder(n)})}

@@ -1,78 +1,61 @@
+/*	配置可参考
+ * 	http://blog.csdn.net/u013291076/article/details/53812311
+ */
+
 var webpack = require('webpack');
+
+var ExtractTextPlugin = require("extract-text-webpack-plugin"); // 安装后引入插件。css单独打包
+
+var autoprefixer = require('autoprefixer'); //安装插件。css添加前缀
 
 /*var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js'); // 引入插件(这是一个自带的内置插件,用来将模块内重复的部分单独打包)。注意：必须把common.js也引入html中，并且在和它同时生成的模块(这里是entry.js和alert.js)之前引入。这里我们暂时先不打算开启*/
 
-var ExtractTextPlugin = require("extract-text-webpack-plugin"); // 安装后引入插件。将css单独打包出来，这里我们暂时不开启
-
-/*var HtmlWebpackPlugin = require('html-webpack-plugin');*/ //自动生成html文件,会自动引入一起打包出来的js
-
-
 module.exports = {
-	//devtool: 'eval-source-map', 在学习阶段以及在小到中性的项目上，eval-source-map是一个很好的选项，不过记得只在开发阶段使用它
-
-	/*entry: { //一般是一个。可以多个，会按照顺序进行打包。entry可以是数组(生成一个js)或者json对象(生成两个js)
-		entry: './src/js/entry.js'
-		//,alert: './src/alert.js'
-	},*/
-	//entry:['./src/entry.js', './src/alert.js'], //这种写法会将这两个js文件默认 合并 成一个名为 main.js 
-
+	//entry:['./src/entry1.js', './src/entry2.js'], //这种写法会将这两个js文件默认 合并 成一个名为 main.js 
 	entry: {
-		services: './src/orangetree/entry.services.js'
+		about: './src/orangetree/entry.about.js',
+		services: './src/orangetree/entry.services.js',
+		index: './src/orangetree/entry.index.js',
+		recruit: './src/orangetree/entry.recruit.js'
 	},
 
 	output: {
-		path: './build',
+		path: './build', //打包后文件存放的目录
 		filename: '[name].js' // [name] [id] [hash]可以运用这三个来给输出名字添加东西
 	},
 
-	module: { //在配置文件里添加JSON loader
+	module: {
 		loaders: [
-			/*{//将css单独打包出来，这里我们暂时不开启
-						test: /\.css$/,
-						loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-					}, */
-			{
+
+			{ // css。单独打包
 				test: /\.css$/, //css-loader使你能够使用类似@import 和 url(...)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。
-				//loader: 'style!css' //表示用style-loader和css-loader处理,"!"表示"和"。然后输入到 bundle.js 文件内,再由 bundle.js 运行到html中
-				loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+				//loader: 'style!css' //其中css-loader用于解析，而style-loader则将解析后的样式嵌入js代码。
+				loader: ExtractTextPlugin.extract(["css-loader", "postcss-loader"]) //单独提取css不需要style-loader
 			},
 
-			{
-				test: /\.(jpg|png|gif)$/,
-				loader: "url"
-				// loader: "url?limit=8192"
-			}, {
-				test: /\.js$/, //.js 文件使用 jsx-loader 来编译处理
-				loader: "jsx-loader"
-			}, {
-				test: /\.less$/,
-				loader: "style!css!less" // 将 less 文件编译成 css 格式,然后输入到 bundle.js 文件内,再由 bundle.js 运行到html中
-			}, {
+
+			{ // 图片。url-loader会默认转换base url，如果不希望可以用file-loader
+				test: /\.(jpg|png)$/,
+				loader: "url?limit=8192&name=images/[hash:8].[ext]" //生成images文件夹，图片8位hash值
+			},
+
+			{ // 解析json
 				test: /\.json$/,
-				loader: "json" //表示用json-loader处理
+				loader: "json"
 			}
 		]
 	},
 
-	plugins: [
-		// new webpack.optimize.CommonsChunkPlugin('common.js'),//公用的js部分
-		new ExtractTextPlugin("[name].css")
-		/*commonsPlugin,*/
-		/*new ExtractTextPlugin("[name].css"),*/
-		/*new HtmlWebpackPlugin(), // 如果需要生成多个,可以多new几个实例(默认名称是index.html)
-		new HtmlWebpackPlugin({
-			title: '这是由webpack生成的话h5页面',
-			filename: 'webpack-index.html'
-		})*/
+	// 添加css3前缀
+	postcss: [
+		autoprefixer({
+			browsers: ['last 2 versions']
+		})
 	],
 
-	resolve: { //自动扩展文件的后缀名
-		extensions: ['', '.js', '.jsx'], // 可以用来指定模块的后缀，这样在引入模块require()时就不需要写后缀，会自动补全。
-		//模块别名定义，方便后续直接引用别名，无须多写长长的地址
-		alias: {
-			/*m1: './src/module1.js', // 后面直接引用 require(“m1”)即可引用到模块
-			m2: './src/module2.js'
-			m3: './src/module3.js'*/
-		}
-	}
+	plugins: [
+		// new webpack.optimize.CommonsChunkPlugin('common.js'),//公用的js部分
+
+		new ExtractTextPlugin("[name].css") //生成的css文件名
+	]
 }

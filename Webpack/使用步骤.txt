@@ -1,0 +1,16 @@
+使用步骤
+
+1、将项目文件夹复制至src内。该文件夹必须包括所有：css、图片、js（目前还没配置自动生成html）
+
+2、创建入口js文件（如src/index.js）。里面写的内容全是require（可以是css，js，图片）
+
+3、打开webpack.config.js，修正入口文件。
+
+4、执行命令行webpack -p。即可在dist文件夹中生成打包、压缩、图片添加hash值的js、css文件
+
+实用功能: 
+
+	1.	$ webpack -w					监听入口文件的变化
+	2.	$ webpack -p					压缩混淆
+	3.	$ webpack -d					生成map映射
+	4.	$ webpack --display-error-details		出错时查看信息

@@ -1,0 +1,12 @@
+@keyframes flash {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.flash {
+    animation: flash 2s infinite alternate ease-in-out;
+}

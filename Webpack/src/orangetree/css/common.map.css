@@ -1,0 +1,80 @@
+.connect {
+    padding: 100px 60px 100px 0;
+    font-size: 16px;
+}
+.connect ul {
+    float: right;
+    width: 560px;
+
+}
+.connect ul li {
+    height: 50px;
+    margin-bottom: 15px;
+    line-height: 50px;
+}
+.connect .gs strong {
+    line-height: 25px;
+}
+.connect strong, .connect i, .connect span {
+    float: right;
+    padding-left: 40px;
+}
+.connect em, .connect b {
+    float: left;
+    padding-left: 40px;
+}
+.connect strong {
+    background: url('../images/recruit/company.png') left center no-repeat;
+    background-size: 28px;
+}
+.connect em {
+    background: url('../images/recruit/dingw.png') left center no-repeat;
+    background-size: 28px;
+}
+.connect b {
+    background: url('../images/recruit/phone.png') left center no-repeat;
+    background-size: 28px;
+}
+.connect span {
+    background: url('../images/recruit/qq.png') left center no-repeat;
+    background-size: 28px;
+}
+.connect i {
+    margin-right: 39px;
+    padding-left: 30px;
+}
+.connect a {
+    display: block;
+    height: 100%;
+    color: #000;
+    text-align: center;
+    border: 1px solid #000;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+.connect a:hover {
+    background: #000;
+    color: #fff;
+}
+.map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/recruit/map.jpg');
+    background-size: 100%;
+    z-index:-1;
+}
+.map:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.75);
+
+}

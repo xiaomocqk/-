@@ -1,0 +1,71 @@
+.wrap {
+    position: relative;
+}
+.wrap .logo {
+    display: none;
+}
+.vid {
+    position: relative;
+    overflow: hidden;
+}
+.vid video {
+    position: relative;
+    width: 100%;
+}
+.con {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 170px;
+    font-size: 30px;
+    color: #8eb921;
+    text-align: center;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 9;
+}
+.con img {
+    display: block;
+    width: 300px;
+    margin-top: 50px;
+    opacity: 0;
+}
+.con p {
+    margin-top: 50px;
+    opacity: 0;
+}
+.text1 {
+    font-size: 26px;
+}
+
+.mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    opacity: 1;
+    z-index: 1;
+}
+.copyright {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(0,0,0,0.5);
+    line-height:30px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+}
+
+/*导航*/
+.wrap .index a {
+    color: #ff9f00;
+}

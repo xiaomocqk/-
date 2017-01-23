@@ -1,0 +1,25 @@
+div {
+    display: flex;
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 20%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0%, 0);
+    }
+}
+
+.fadeInUp {
+    animation: fadeInUp 0.8s forwards ease-in-out;
+}
+
+/* transiton的做法会导致动画有明显的卡祯 */
+/* 
+.fadeInUp{
+	opacity: 1;
+	transform: translate3d(0, -10%, 0);
+	transition: all 0.8s ease-in-out;
+} */
