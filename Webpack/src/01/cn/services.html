@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script>
+    (function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>业务 - 厦门桔子树网络科技有限公司</title>
+    <meta name="author" content="桔子树网络科技">
+    <meta name="copyright" content="桔子树网络科技">
+    <meta name="description" content="厦门桔子树网络是厦门市高端互动网站建设的先锋，在厦门互动设计,厦门网站设计,APP开发,厦门APP开发,厦门网站建设公司,厦门网页设计,厦门互动营销领域成绩斐然，赢得了众多优质客户和良好口碑。">
+    <meta name="keywords" content="厦门网站开发,厦门网站设计,APP开发,厦门APP开发,厦门网站建设公司,厦门网络营销,厦门互动营销">
+    <link rel="Shortcut Icon" href="../images/common/logo.png">
+    <link rel="stylesheet" href="../css/common/reset.css">
+</head>
+
+<body>
+    <!-- 导航 -->
+    <div class="nav-wrap">
+        <!--logo图标-->
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/common/logo.png" alt="">
+            </a>
+        </div>
+        <!--导航按钮-->
+        <div class="nav-btn">菜单</div>
+        <!--导航-->
+        <div class="nav">
+            <ul class="nav-con">
+                <li>
+                    <a href="../index.html">首页</a>
+                </li>
+                <li>
+                    <a href="about.html">关于</a>
+                </li>
+                <li>
+                    <a href="services.html">业务</a>
+                </li>
+                <li>
+                    <a href="recruit.html">招聘</a>
+                </li>
+            </ul>
+            <div class="bot">
+                <p>我们专注于互联网产
+                    <br>品的研发</p>
+                <div>
+                    <a href="###">
+                        <img src="../images/common/sina.png" alt="">
+                    </a>
+                    <a href="###">
+                        <img src="../images/common/wechat.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--蒙版层-->
+        <div class="nav-mask"></div>
+    </div>
+    <!-- 满屏 -->
+    <div id="fullPage" data-rel="tran0">
+        <!-- page1 -->
+        <div class="page page1">
+            <div class="text">
+                <h1 data-rel="fadeIn">业 务 范 围</h1>
+                <i class="line" data-rel="active"></i>
+            </div>
+            <div id="dot"></div>
+        </div>
+        <!-- page2 -->
+        <div class="page page2">
+            <div class="text">
+                <h1 data-rel="fadeInLeft">网站建设</h1>
+                <i class="line" data-rel="active"></i>
+                <div class="content" data-rel="fadeInUp">
+                    <p>独具匠心，打造h5视觉盛宴。</p>
+                    <p class="delay200">提升网站辨识度，贴近品牌用户，</p>
+                    <p class="delay500">利于企业宣传品牌形象与产品优势。</p>
+                </div>
+                <div class="services" data-rel="fadeIn">
+                    <h2>服务内容</h2>
+                    <div>企业站</div>
+                    <div>微网站</div>
+                    <div>产品商城</div>
+                    <div>互动营销</div>
+                </div>
+            </div>
+        </div>
+        <!-- page3 -->
+        <div class="page page3">
+            <div class="text">
+                <h1 data-rel="fadeInRight">微信营销</h1>
+                <i class="line" data-rel="active"></i>
+                <div class="content" data-rel="fadeInRight">
+                    <p>H5的爆发式增长有利用企业营销</p>
+                    <p class="delay200">借助H5+我们将为您深度定制微信服务 </p>
+                    <p class="delay500">让用户永远记住你！</p>
+                </div>
+                <div class="services" data-rel="fadeIn">
+                    <h2>服务内容</h2>
+                    <div><span>微商城</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>微招聘</span></div>
+                    <div><span>微主题</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>邀请函</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>抽奖活动</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page page4">
+            <div class="text">
+                <h1 data-rel="fadeInDown">APP</h1>
+                <i class="line" data-rel="active"></i>
+                <div class="content" data-rel="fadeInLeft">
+                    <p>一支热情专业的手机应用软件开发团队， </p>
+                    <p class="delay200">只为用户定制开发满意、有价值的手机APP</p>
+                    <p class="delay500">利于企业宣传品牌形象与产品优势。</p>
+                </div>
+                <div class="services" data-rel="fadeIn">
+                    <h2>服务内容</h2>
+                    <div>展示型</div>
+                    <div>平台型</div>
+                    <div>商城型</div>
+                    <div>游戏型</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--地图-->
+    <div class="map">
+        <div class="addr clearfix">
+            <strong>
+                厦门桔子树网络科技有限公司
+            </strong>
+            <strong>
+                福建省厦门市软件园二期30号之六508B
+            </strong>
+        </div>
+        <div class="num clearfix">
+            <em>
+                0592-5996010
+            </em>
+            <em>
+                88420457&nbsp;&nbsp;88420557
+            </em>
+        </div>
+        <div class="call">
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=88420557&amp;site=qq&amp;menu=yes" target="_blank">发送留言</a>
+            <a href="http://j.map.baidu.com/u6ruj" target="_blank">查看地图</a>
+        </div>
+    </div>
+    <!--版权-->
+    <div class="copyright">
+        版权所有 © 2016 厦门桔子树网络科技有限公司
+    </div>
+    <!-- 置顶 -->
+    <div id="getTop">
+        <img src="" data-img="../images/common/top.png" alt="back top">
+    </div>
+    <script src="../libs/zepto-v1.2.0.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.page {
+    width: 100%;
+    height: 25%;
+    overflow: hidden;
+    position: relative;
+}
+.page .text{
+    font-size: 0.188rem;
+    color: #fff;
+    transform: translate3d(0, 1rem,0);
+}
+
+.page h1 {
+    font-size: 0.35rem;
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+}
+.page h2{
+    font-size: 0.22rem;
+}
+.text .line {
+    display: inline-block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    margin: 0.2rem 0 0.5rem;
+}
+.text p {
+    line-height: 2.3;
+}
+.page h1,.page p{
+    opacity: 0;
+}
+.services{
+    opacity: 0;
+    line-height: 2;
+    transform: translate(0, 0.4rem);
+    font-size: 0.16rem;
+}
+.page .active{
+    width: 0.4rem !important;
+    transition: width 1s linear;
+}
+.delay200 {
+    animation-delay: 0.2s !important;
+}
+.delay500 {
+    animation-delay: 0.5s !important;
+}
+.delay1000{
+     animation-delay: 1s !important;
+}
+.tran0{
+    transform: none !important;
+    transition: all 1.2s linear 0s;
+}
+/* fullPage */
+#fullPage{
+    height: 400%;
+    background: url('../images/services/bg-long.jpg') no-repeat;
+    background-size: cover;
+    transform: scale3d(1.2,1.2,1);
+}
+/* page1 */
+.page1 .text{
+    text-align: center;
+    transform: translate3d(0, 2.4rem,0);
+}
+.page1 h1 {
+    opacity: 0;
+}
+.page1 .line{
+    width: 0;
+}
+@-webkit-keyframes dot {
+    0% {
+        -webkit-transform: translateY(0);
+    }
+    10% {
+        -webkit-transform: translateY(-15px);
+    }
+    20% {
+        -webkit-transform: translateY(-15px);
+    }
+    30% {
+        -webkit-transform: translateY(0);
+    }
+}
+
+#dot {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0.2rem;
+    left: 50%;
+    margin-left: -8px;
+    animation: dot 2.5s linear infinite;
+}
+
+/* page2 */
+.page2 .text,.page4 .text{
+    padding-left: 0.1rem;
+}
+.page2 .text{
+    color: #414141;
+}
+.page2 .line{
+    background-color: #414141;
+}
+.page3 .services{
+    padding-left: 0.1rem;
+    text-align: left;
+}
+/* page3 */
+.page3 .text{
+    padding-right: 0.1rem;
+    text-align: right;
+}

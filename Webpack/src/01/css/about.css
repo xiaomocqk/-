@@ -1,0 +1,151 @@
+
+
+/* 公共样式开始 */
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.page .text{
+    font-size: 0.188rem;
+    transform: translate(0, 1.2rem);
+}
+
+.page h1 {
+    font-size: 0.35rem;
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+}
+.text .line {
+    display: inline-block;
+    height: 2px;
+    background: #fff;
+    margin: 0.2rem 0 0.5rem;
+}
+.text p {
+    line-height: 2.3;
+}
+.delay200 {
+    animation-delay: 0.2s !important;
+}
+.delay500 {
+    animation-delay: 0.5s !important;
+}
+.delay1000{
+     animation-delay: 1s !important;
+}
+.tran0{
+    transform: none !important;
+    transition: all 1.2s linear 0s;
+}
+/* 第一页 */
+.page1 {
+    background: url('../images/about/41.jpg') no-repeat;
+    background-size: cover;
+    transform: scale(1.3) rotate(10deg);
+}
+.page1 .text {
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 2px 1px #000;
+}
+.page1 h1{
+    text-shadow: 2px 4px 4px #000;
+    color: #fff;
+}
+.page1 h1,
+.page1 p {
+    opacity: 0;
+}
+.page1 .line{
+    width: 0.4rem;
+    box-shadow: 4px 2px 4px #000;
+    opacity: 0;
+}
+
+/* 手势 */
+@-webkit-keyframes dot {
+    0% {
+        -webkit-transform: translateY(0);
+    }
+    10% {
+        -webkit-transform: translateY(-15px);
+    }
+    20% {
+        -webkit-transform: translateY(-15px);
+    }
+    30% {
+        -webkit-transform: translateY(0);
+    }
+}
+
+#dot {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0.2rem;
+    left: 50%;
+    margin-left: -8px;
+    animation: dot 2.5s linear infinite;
+}
+
+/* 第二页 */
+.page2 {
+    background: url('../images/about/22.jpg') no-repeat;
+    background-size: cover;
+}
+.page2 .text {
+    text-align: right;
+    padding-right:  0.1rem;
+}
+.page2 h1,.page2 p{
+    color: #fff;
+}
+.page2 h1{
+    opacity: 0;
+    text-shadow: 2px 4px 4px #000;
+}
+.page2 .line{
+    width: 0;
+}
+.line-active{
+    width: 0.4rem !important;
+    transition: width 1s linear;
+}
+.page2 .content{
+    opacity: 0;
+}
+/* 第三页 */
+.page3{
+    height: 90%;
+    overflow: hidden;
+}
+.page3 .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../images/about/bg25.jpg') no-repeat;
+    background-size: cover;
+    transform: scale(1.2);
+    transform-origin: 50% 50%;
+}
+.page3 .text{
+    padding-left: 0.1rem;
+    color: #fff;
+    font-size: 0.16rem;
+}
+.page3 .line{
+    width: 0;
+}
+.page3 h1,.page3 p{
+    opacity: 0;
+}

@@ -1,0 +1,58 @@
+@import url("common/nav.css");
+
+html,body,.wrap {
+    height: 100%;
+}
+
+.main {
+    position: absolute;
+    z-index:2;
+    height: 100%;
+    width: 100%;
+}
+.con {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    background: red;
+}
+.main img {
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    width: 2.5rem;
+    margin-left: -1.25rem;
+    opacity: 0;
+}
+.main p {
+    position: absolute;
+    width: 100%;
+    line-height: 1.5;
+    font-size: 0.25rem;
+    text-align: center;
+    color: #8eb921;
+    opacity: 0;
+}
+.text1 {
+    top: 0.3rem;
+}
+.text2 {
+    top: 0.6rem;
+}
+.bg {
+    height: 100%;
+}
+.bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
