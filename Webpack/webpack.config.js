@@ -76,7 +76,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: 'src/01/index.html',
 			filename: 'index.html', //输出的路径及文件名。相对于path
-			favicon: 'src/images/favicon.ico',
+			//favicon: 'src/images/favicon.ico',
 
 			inject: true, //允许插件修改哪些内容，包括head与body
 			hash: true, //为静态资源生成hash值
