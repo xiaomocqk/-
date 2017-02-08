@@ -71,9 +71,9 @@ module.exports = {
 	plugins: [
 		// new webpack.optimize.CommonsChunkPlugin('common.js'),// 单独抽出公用的js部分，暂时不开启。如果开启需要提前在html中引入
 
-		new ExtractTextPlugin("css/[name].css"), //, 生成的css路径及文件名(css文件中包含url这种相对路径的样式，所以需要注意他的路径。相对于path)
+		new ExtractTextPlugin("css/[name].css") //, 生成的css路径及文件名(css文件中包含url这种相对路径的样式，所以需要注意他的路径。相对于path)
 
-		new HtmlWebpackPlugin({
+		,new HtmlWebpackPlugin({
 			template: 'src/01/index.html',
 			filename: 'index.html', //输出的路径及文件名。相对于path
 			//favicon: 'src/images/favicon.ico',
