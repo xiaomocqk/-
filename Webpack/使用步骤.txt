@@ -2,14 +2,14 @@
 打包三步走:
 		0. 注释掉 原html 中被打包的所有模块的link、script引用
 		0. js内有用到图片时,改写成require形式
-	 	1. 修改entry内key和value值。key值已设置会是打包后的js/css文件名称
-	 	2. 修改HtmlWebpackPlugin中的template和filename
+	 	1. 修改entry内key和value值。key值已设置会是打包后的js/css文件名称（必须是“./”开头的路径）
+	 	2. 修改HtmlWebpackPlugin中的template和filename。如果内有则注释掉它
 	 	3. 执行 webpack -p 命令行打包并压缩
 
 	 	[4] 可选及注意事项: 
 			1). 图片/css/js都自动添加了版本号
-	 		2).	css3前缀采用默认值
-	 		3).	打包后的文件无法在本地打开
+	 		2). css3前缀采用默认值
+	 		3). 打包后的文件无法在本地打开
 	 		4). 是否需要引入cdn加速文件
 
 

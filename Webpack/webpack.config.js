@@ -39,7 +39,7 @@ module.exports = {
 
 			{ // css。单独打包
 				test: /\.css$/, //css-loader使你能够使用类似@import 和 url(...)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。
-				loader: ExtractTextPlugin.extract(["css-loader", "postcss-loader"]) //单独提取css不需要style-loader
+				loader: ExtractTextPlugin.extract(["css-loader", "postcss-loader"]) //单独提取css不需要style-loader. postcss是用于在js中转换css样式的js插件
 			},
 
 			{ // url-loader或file-loader 处理图片
@@ -71,11 +71,13 @@ module.exports = {
 	plugins: [
 		// new webpack.optimize.CommonsChunkPlugin('common.js'),// 单独抽出公用的js部分，暂时不开启。如果开启需要提前在html中引入
 
-		new ExtractTextPlugin("css/[name].css") //, 生成的css路径及文件名(css文件中包含url这种相对路径的样式，所以需要注意他的路径。相对于path)
+		new ExtractTextPlugin("css/[name].css"), //, 生成的css路径及文件名(css文件中包含url这种相对路径的样式，所以需要注意他的路径。相对于path)
 
-		, new HtmlWebpackPlugin({
+		new HtmlWebpackPlugin({
 			template: 'src/01/index.html',
 			filename: 'index.html', //输出的路径及文件名。相对于path
+			favicon: 'src/images/favicon.ico',
+
 			inject: true, //允许插件修改哪些内容，包括head与body
 			hash: true, //为静态资源生成hash值
 			minify: { //压缩HTML文件
@@ -84,4 +86,4 @@ module.exports = {
 			}
 		})
 	]
-}
+};
