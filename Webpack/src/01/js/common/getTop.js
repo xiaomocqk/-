@@ -3,10 +3,10 @@
 $(function(){
 	(function() {
 	var moveA = 0,
-		dataImg = $('#getTop img').attr('data-img'),
+		// dataImg = $('#getTop img').attr('data-img'),
 		min = 100; //隐藏临界值
 
-	$('#getTop img').attr('src', dataImg);
+	// $('#getTop img').attr('src', dataImg);
 
 	
 	$(window).on('scroll', function() {

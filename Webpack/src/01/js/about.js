@@ -15,18 +15,19 @@ function AnimationRecycle(obj, className) {
 		} else if (scrollTop + viewH < iTop) { // 向上滚动 元素完全消失于窗口时
 			obj.removeClass(className); //默认全部，不需要遍历
 		}
-	})
+	});
 }
 
 
 $(function() {
 
 	// css3动画结束事件
-	var animEnd = 'animationend webkitAnimationEnd',
-		tranEnd = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend';
+	var animEnd = 'animationend webkitAnimationEnd';
 
 	/*page1*/
 	(function() {
+		var URL = require("../images/about/41.jpg");
+		
 		var newImg = new Image(),
 			// data-rel值储存在数组中
 			dataRel = [
@@ -37,16 +38,16 @@ $(function() {
 			];
 
 		// 首屏图片加载完成后执行动画
-		newImg.src = "../images/about/41.jpg";
 		newImg.onload = function() {
 			$('.page1 h1').addClass(dataRel[1]);
-			$('.page1').addClass(dataRel[0])
+			$('.page1').addClass(dataRel[0]);
 				// 线条、大标题同步进行动画
 			$('.page1 .line').addClass(dataRel[2]).on(animEnd, function() {
 				$('.page1 p').addClass(dataRel[3]);
 			});
 
 		};
+		newImg.src = URL;
 	})();
 
 	/*page2*/
@@ -71,12 +72,12 @@ $(function() {
 				// console.log(1);//transitionend触发了多次
 				flag = true;
 
-			};
+			}
 			// 动画回收与重新添加
 			if (flag) { //确保屏幕的动画已经执行了
 				AnimationRecycle(content, dataRel[2]);
 			}
-		})
+		});
 	})();
 
 	/* page3*/
@@ -96,10 +97,9 @@ $(function() {
 			if (scrollTop > iTop) {
 				$('.page3 .bg').addClass(dataRel[0]);
 				$('.page3 h1').addClass(dataRel[1]);
-				$('.page3 .line').addClass(dataRel[2]); /*.on(tranEnd, function() {*/
+				$('.page3 .line').addClass(dataRel[2]);
 				$('.page3 p').addClass(dataRel[3]);
 				flag = true;
-				// });
 			}
 			// 动画回收与重新添加
 			if (flag) { //确保屏幕的动画已经执行了
@@ -107,6 +107,6 @@ $(function() {
 					AnimationRecycle($(this), dataRel[3]);
 				});
 			}
-		})
+		});
 	})();
-})
+});

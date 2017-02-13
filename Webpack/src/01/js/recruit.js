@@ -90,8 +90,10 @@ $(function() {
 
     // 效果这里开始
     // 第一屏
+    var URL = require('../images/recruit/demo-2-bg.jpg');
+    
     var img = new Image();
-    img.src = '../images/recruit/demo-2-bg.jpg';
+    img.src = URL;
     img.onload = function() {
         $('.page1 h1').animate({
             top: 50 + '%',

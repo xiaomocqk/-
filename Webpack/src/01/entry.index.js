@@ -1,6 +1,6 @@
 // css
-// require('./css/common/reset.css');
-// require('./css/common/nav.css');
+require('./css/common/reset.css');
+require('./css/common/nav.css');
 require('./css/index.css');
 
 // js

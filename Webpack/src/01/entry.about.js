@@ -1,4 +1,5 @@
 // css
+require('./css/common/reset.css')
 require('./css/common/nav.css');
 require('./css/about.css');
 require('./css/common/getTop.css');
