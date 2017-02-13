@@ -1,3 +1,4 @@
+
 /*	配置可参考
  * 	http://blog.csdn.net/u013291076/article/details/53812311
 
@@ -89,4 +90,5 @@ module.exports = {
 			}
 		})
 	]
+>>>>>>> 20f6b88... a
 };
