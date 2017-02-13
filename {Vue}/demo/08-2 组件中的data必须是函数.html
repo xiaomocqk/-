@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="../vue-2.1.3.min.js"></script>
+    <script src="../vue-2.1.3.js"></script>
     <style>
-        p{
-            color: lightskyblue;
-            font-size: 24px;
-        }
+    p {
+        color: lightskyblue;
+        font-size: 24px;
+    }
     </style>
 </head>
 
 <body>
     使用组件时，大多数选项可以被传入到 Vue 构造器中，有一个例外： data 必须是函数。 (需要和new Vue中的data区别开)
-
     <div id="box1">
         <my-tag></my-tag>
         <my-tag></my-tag>
@@ -26,10 +25,17 @@
         template: '<button @click="add += 1">{{ add }}</button>',
 
         // data 必须是函数,不能是data:{}。 
-        data:function(){
+        /*data:function(){
             return {
                 add: 0
             };
+        }*/
+
+        // 写法2
+        data() {
+            return {
+                add: 0
+            }
         }
     });
 

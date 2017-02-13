@@ -41,12 +41,12 @@
     Vue.component('my-tag', {
         // 组件的事件只能是该组件内写的methods
         // component 内部定义名为 get 的方法,而这个方法在DOM元素中就成了 get 事件
-        template: '<button @click="get">{{ counter }}</button>',
+        template: '<button @click="justFn">{{ counter }}</button>',
         data:function () {
             return {counter:0}//用于显示每个组件自己的被点击的次数
         },
         methods:{
-            get:function(){
+            justFn:function(){
                 this.counter ++;//每一个实例(即html中的元素)都继承了一个 counter 属性
 
                 // 子传父。事件的名称叫做 get ,在 html 中的子组件使用

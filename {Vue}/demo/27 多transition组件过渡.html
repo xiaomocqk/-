@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+    <style>
+    .component-fade-enter,
+    .component-fade-leave-active {
+        opacity: 0;
+    }
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+        transition: opacity .3s ease;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="transition-components-demo" class="demo">
+    	<!-- 此时view-model的作用提现出来了，它的作用是把input/select/textarea的value值同步 -->
+        <input v-model="view" value="v-a" type="radio" id="a" name="demo"><label for="a">A</label>
+        <input v-model="view" value="v-b" type="radio" id="b" name="demo"><label for="b">B</label>
+        <transition name="component-fade" mode="out-in">
+            <component v-bind:is="view"></component>
+        </transition>
+    </div>
+    <script>
+    new Vue({
+        el: '#transition-components-demo',
+        data: {
+            view: 'v-a'
+        },
+        components: {
+            'v-a': {
+                template: '<div>Component A</div>'
+            },
+            'v-b': {
+                template: '<div>Component B</div>'
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
