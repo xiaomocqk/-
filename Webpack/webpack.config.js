@@ -1,5 +1,6 @@
 /*	配置可参考
  * 	http://blog.csdn.net/u013291076/article/details/53812311
+ 	www.cnblogs.com/sloong/p/5826818.html
 
 	打包三步走:
 		0. 注释掉 原html 中被打包的所有模块的link(包括favicon)、script引用
