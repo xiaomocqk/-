@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <my-tag>
+            <span>事实上</span>
+            <a href="javascript:;">这是一个假链接</a>
+        </my-tag>
+    </div>
+    <script>
+    Vue.component('my-tag', {
+        render: function(createElement) {
+            return createElement(
+                'h1', [
+                    createElement('div',{
+                            attrs: {
+                                id: 'id',
+                                'class': 'class'
+                            },
+                            style: {
+                                color: 'red'
+                            },
+                            domProps: {
+                                // innerHTML:'你好啊'  //会覆盖掉原有的内容
+                            }
+
+                            // 组件的事件绑定暂时还有问题
+                            /*,
+                            on: {
+                                click: this.clickFn
+                            }*/
+                        }, this.$slots.default
+                    )
+                ]
+            )
+        }
+    });
+
+    new Vue({
+        el: '#demo',
+        methods: {
+            justClick: function() {
+                alert(1)
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
