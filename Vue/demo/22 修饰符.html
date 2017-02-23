@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+    <style>
+        strong{
+            font-size: 28px;
+            color: red;
+            background-color: #ccc;
+        }
+        span {
+            text-decoration: underline;
+            color: lightgreen;
+            font-size: 24px;
+            margin-left: 30px;
+        }
+        input{
+            width: 300px;
+            height: 40px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <strong>.lazy</strong>
+        <p>不再是"input事件"而是"change事件"触发数据的更新:</p>
+        <input type="text" v-model.lazy="msg1"><span>{{msg1}}</span>
+        <!-- // -->
+        <hr>
+        <strong>.number</strong>
+        <p>如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值）</p>
+        <input type="text" v-model.number="msg2"><span>{{msg2}}</span>
+        <!-- // -->
+        <hr>
+        <strong>.trim</strong>
+        <p>自动过滤用户输入的首尾空格</p>
+        <input type="text" v-model.trim="msg3"><span>{{msg3}}</span>
+    </div>
+    <script>
+    new Vue({
+        el: "#box",
+        data: {
+            msg1: "",
+            msg2: "",
+            msg3: ""
+        }
+    })
+    </script>
+</body>
+
+</html>

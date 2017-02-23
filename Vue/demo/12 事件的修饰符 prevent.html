@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+</head>
+
+<body>
+    <!-- .prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault() -->
+    <a href="http://www.baidu.com" v-on:click.prevent="stop">不能弹出1也不能链接到百度</a>
+    <script>
+    	new Vue({
+    		el:"a",
+    		data:{},
+    		methods:{
+    			stop:function(){
+    				alet(1);
+    			}
+    		}
+    	})
+    </script>
+</body>
+
+</html>

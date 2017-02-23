@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <input type="text" v-my-directuve>
+    </div>
+    <script>
+    // 关于directive()的更多 钩子函数 未罗列
+    Vue.directive('my-directuve',{
+        inserted:function(el){
+            el.focus();
+            el.value = '520'
+        }
+    });
+
+    new Vue({
+        el: '#demo'
+    })
+    </script>
+</body>
+
+</html>

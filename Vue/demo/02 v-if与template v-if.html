@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <p v-if="show">隐藏的段落</p>
+        
+        <!-- 高级 我们可以把一个 <template> 元素当做包装元素，并在上面使用 v-if，最终的渲染结果不会包含它。
+        	 但是如果使用其他，如<abc>元素来包裹，依然会包含它
+         -->
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+    <script>
+    new Vue({
+        el: "#box",
+        data: {
+            show: true,
+            ok: true
+        }
+    });
+    </script>
+</body>
+
+</html>

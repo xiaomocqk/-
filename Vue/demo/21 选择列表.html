@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+</head>
+
+<body>
+    <h2>选择列表选框，结合value</h2>
+    <div id="box1">
+        <select v-model="xxx">
+            <option value="1">上海</option>
+            <option value="2厦门">厦门</option>
+            <option value="3">辽宁</option>
+            <option value="4台">台湾</option>
+        </select>
+        <h1>已选中：{{xxx}}</h1>
+    </div>
+    <!--  -->
+    <hr>
+    <h2>选中的时候，v-model="str"中 "str" 为字符串 "吃1、喝2、玩3、乐4"</h2>
+    <div id="box2">
+        <select v-model="str" multiple>
+            <option v-for="item in options" :value="item.value">{{item.text}}</option>
+        </select>
+        <h1>已选中：{{str}}</h1>
+    </div>
+    <script>
+    new Vue({
+        el: "#box1",
+        data: {
+            xxx: ''
+        }
+    })
+    new Vue({
+        el: "#box2",
+        data: {
+            str:"",
+            options: [
+                {value:"吃1",text:"吃"},
+                {value:"喝2",text:"喝"},
+                {value:"玩3",text:"玩"},
+                {value:"乐4",text:"乐"}
+            ]
+        }
+    })
+    </script>
+</body>
+
+</html>

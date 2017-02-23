@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../vue-2.1.3.js"></script>
+    <style>
+
+    .demo-list-enter,
+    .demo-list-leave-active {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    
+    .demo-list-leave-active {
+        position: absolute;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <input type="text" v-model="query">   
+        <!-- 注意:事件是绑定在transition-group上的 -->
+        <!-- v-bind:css="false"保证了动画的不会发生重叠 -->
+        <!-- v-bind:data-index和el.dataset.index确定了动画的顺序 -->
+        <transition-group
+            name="demo-list"
+            tag="ul"
+            v-bind:css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave">
+            <li
+                v-bind:key="item"
+                v-for="(item,index) in computedList"
+                v-bind:data-index="index"
+            >
+                {{item}}
+            </li>
+        </transition-group>
+        <!-- <div>{{computedList}}</div> -->
+    </div>
+    <script src="../velocity.js"></script>
+    <script>
+    new Vue({
+        el: '#demo',
+        data: {
+            query: '',
+            items: ['Luffy','Zoro','Nami','Sanji','Chopper','Robin','Franky']
+        },
+
+        computed: {
+            computedList:function(){
+                var vm = this;// 当前new实例
+                return this.items.filter(function(item){
+                    // console.log(this);   //window
+                    return item.toLowerCase().indexOf(vm.query.toLowerCase()) != -1; //返回一个过滤后的数组
+                });
+            }
+        },
+        methods:{
+            beforeEnter:function(el){
+                // console.log(el);//指向dom元素
+                el.style.opacity=0;
+                el.style.height=0;
+            },
+            enter:function(el,done){
+                var delay = el.dataset.index * 150;
+                console.log(delay);
+                setTimeout(function () {
+                    Velocity(
+                      el,
+                      { opacity: 1, height: '1.6em' },
+                      { complete: done }
+                    )
+                }, delay)
+            },
+            leave:function(el,done){
+                var delay = el.dataset.index * 150;
+                setTimeout(function () {
+                    Velocity(
+                      el,
+                      { opacity: 0, height: 0 },
+                      { complete: done }
+                    )
+                }, delay)
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
