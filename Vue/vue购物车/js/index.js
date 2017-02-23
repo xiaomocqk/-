@@ -75,6 +75,7 @@ Vue.component('list', {
         <ul class="list">\
         	<li>店铺: {{shopState}}</li>\
         	<li>商品: {{goodState}}</li>\
+        	<li>全选: {{allState}}</li>\
             <li class="block"\
                 v-for="(item, indexA) in products"\
             >\
@@ -172,12 +173,7 @@ Vue.component('list', {
 				}
 			}
 		}
-	},
-
-	// 计算属性
-	computed: {
-	},
-	watch: {}
+	}
 });
 
 // 注册全局的过滤器
