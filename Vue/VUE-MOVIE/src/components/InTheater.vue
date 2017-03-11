@@ -3,32 +3,40 @@
 		<spinner v-if="loading"></spinner>
 		<ul>
 			<li v-for="item in movies">
-					<img  :src="item.imageUrl"
-								:alt="item.alt"
+				<img 	:src="item.images.small"
+							:alt="item.alt"
+				>
+				<div class="info">
+					<h3>
+						{{item.title}}
+					</h3>
+					<stars :score="item.rating.average"
 					>
-					<div class="info">
-						<h3>
-							{{item.title}}
-						</h3>
-						<stars :score="item.score"></stars>
-						<div class="score">{{item.score}}分</div>
-						<div class="director">
-							<span v-for="director in item.directors">
-								导演：
-								{{ director.name }}
-							</span>
-						</div>
-						<div class="cast">
-							<span v-for="cast in item.casts">
-								主演：
-								{{cast.name}}
-							</span>
-						</div>
+					</stars>
+					<div class="score">
+						{{item.rating.average}}分
 					</div>
+					<div class="director">
+						导演：
+						<span v-for="director in item.directors"
+									class="mr5"
+						>
+							{{ director.name }}
+						</span>
+					</div>
+					<div class="cast">
+						主演：
+						<span v-for="cast in item.casts"
+									class="mr5"
+						>
+							{{cast.name}}
+						</span>
+					</div>
+				</div>
 			</li>
 		</ul>
 		<p 	id="no-more"
-				v-if="bottomTips"
+				v-if="showEnd"
 		>
 			我是有底线的
 		</p>
@@ -43,60 +51,8 @@
 		data() {
 			return {
 				loading:true,
-				bottomTips:true,//底线
-				movies:[
-					{
-						title:"金刚狼3：殊死一站",
-						imageUrl: "1.jpg",
-						alt:"喵眼",
-						score:8.4,
-						casts:[{//主演
-							name:"休·杰克曼"
-						},{
-							name:"帕特里克·斯图尔特"
-						}],
-						directors:[//导演
-							{
-								name:"詹姆斯·曼高德"
-							}
-						]
-
-					},
-					{
-						title:"金刚狼3：殊死一站",
-						imageUrl: "1.jpg",
-						alt:"喵眼",
-						score:8.4,
-						casts:[{//主演
-							name:"休·杰克曼"
-						},{
-							name:"帕特里克·斯图尔特"
-						}],
-						directors:[//导演
-							{
-								name:"詹姆斯·曼高德"
-							}
-						]
-
-					},
-					{
-						title:"金刚狼3：殊死一站",
-						imageUrl: "1.jpg",
-						alt:"喵眼",
-						score:8.4,
-						casts:[{//主演
-							name:"休·杰克曼"
-						},{
-							name:"帕特里克·斯图尔特"
-						}],
-						directors:[//导演
-							{
-								name:"詹姆斯·曼高德"
-							}
-						]
-
-					},
-				]
+				showEnd:false,//底线
+				movies:[]
 			}
 		},
 		components:{
@@ -105,12 +61,14 @@
 		},
 		mounted() {
 			this.$http.jsonp('https://api.douban.com/v2/movie/in_theaters')
-					.then(function (response){
-						console.log(response.bodyText)
-					})
-					.catch(function (response){
-						console.log(response)
-					})
+				.then(function (response){
+					this.movies = response.body.subjects;
+					this.loading = false;
+					this.showEnd = true
+				})
+				.catch(function (response){
+					console.log(response)
+				})
 		}
 	}
 </script>

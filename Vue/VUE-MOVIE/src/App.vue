@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// import Vue from 'vue'
 import vHeader from './components/Header/Header.vue'
 // import SearchPage from './components/SearchPage/SearchPage.vue'
 import InTheater from './components/InTheater.vue'
@@ -32,8 +31,7 @@ export default {
   components:{
     vHeader,
     // SearchPage
-    InTheater,
-    // Spinner
+    InTheater
   },
   data(){
     return {
