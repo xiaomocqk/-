@@ -1,67 +1,27 @@
 <template>
   <div id="app">
-    <v-header></v-header>
-    <!-- <search-page></search-page> -->
-    <div class="tab">
-      <div  v-for="(item,index) in items"
-            :class="{active:item.isActive}"
-            @click="selected(index)"
-      >
-        {{ item.name }}
-      </div>
-    </div>
-    <in-theater></in-theater>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import vHeader from './components/Header/Header.vue'
-// import SearchPage from './components/SearchPage/SearchPage.vue'
-import InTheater from './components/InTheater.vue'
-
-const TAB_ITEMS = [{
-  name:'正在热映',
-  isActive: true
-},{
-  name:'即将上映',
-  isActive:false
-}];
-
 export default {
-  components:{
-    vHeader,
-    // SearchPage
-    InTheater
-  },
-  data(){
-    return {
-      items:TAB_ITEMS
-    }
-  },
-  methods:{
-    selected(index){
-      let items = this.items;
-      items.forEach(function(item){
-        item.isActive = false;
-      });
-      items[index].isActive = true
-    }
+  created() { // 可以在beforeCreate与created之间衡量选其一
+    this.$router.push({path:'/filmDetails'})    //自动让url地址由,如 localhost:3000 跳转到 localhost:3000/#/inTheater
   }
-
 }
 </script>
 
-
-
-<style lang="less">
+<style>
 html,body{
   height: 100%;
   overflow: hidden;
-}
-body{
   font-size: 62.5%;
+}
+
+body{
   max-width: 500px;
-  min-width: 414px;
+  min-width: 320px;
   margin:0 auto;
 }
 #app {
@@ -72,32 +32,5 @@ body{
     -moz-osx-font-smoothing: grayscale;
     background-color: #F8F8F8;
     color: #2c3e50;
-
-    .tab{
-      display: flex;
-      align-items:center;
-      text-align: center;
-      height: 36px;
-      background-color: #df2d2d;
-
-      div{
-        flex:1;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 36px;
-        position: relative;
-
-        &.active:after{
-          content: "";
-          position: absolute;
-          width: 70%;
-          height: 1px;
-          background-color:#fff;
-          bottom: 2px;
-          left: 20%;
-        }
-      }
-    }
 }
 </style>

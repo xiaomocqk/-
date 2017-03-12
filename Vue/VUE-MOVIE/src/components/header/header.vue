@@ -1,19 +1,69 @@
 <template>
-	<div class="header">
-		<div><img class="logo" src="../../assets/logo.png" alt="logo"></div>
-		<div>
-			<h3>喵眼电影</h3>
-			<span class="slogan">在线选座，热门影讯，爱上看电影</span>
+	<div>
+		<div class="header">
+			<div><img class="logo" src="../../assets/logo.png" alt="logo"></div>
+			<div class="header-title">
+				<h3>喵眼电影</h3>
+				<span class="slogan">看电影，上喵眼</span>
+			</div>
+			<input type="text"
+				@click="goSearchPage"
+				v-model.trim="query"
+				placeholder="请输入电影名称"
+			>
 		</div>
-		<input v-model="key" type="text" name="key" id="key" placeholder="请输入电影名称">
-	</div>
+	    <!-- vue警告:[虚拟组件]的循环，应该绑定key，且指定一个唯一的值 -->
+	    <div class="tab">
+	      <router-link
+	      	v-for="(tab,index) in items"
+	      	class="tab-item"
+	        :class="{active: tab.isActive}"
+	        :to="tab.linkTo"
+	        :key="tab.id"
+	      >
+	        {{ tab.name }}
+	      </router-link>
+	    </div>
+  </div>
 </template>
 
 <script>
+	const TAB_ITEMS = [
+		{
+		  name:'正在热映',
+		  id:0,
+		  isActive: false,
+		  linkTo:'/inTheater'
+		},{
+		  name:'即将上映',
+		  id:1,
+		  isActive:false,
+		  linkTo:'/comingSoon'
+		}
+	];
+
 	export default{
 		data(){
 			return {
-				key:''
+				query:'',
+				items:TAB_ITEMS
+			}
+		},
+		mounted(){	// 【重点及难点】: 改变tab的active下划线(不适合是使用事件、computed、watch更新时，就需要考虑钩子函数)
+			this.items.forEach((item)=>{
+				item.isActive = false
+			});
+			this.items[this.prop].isActive = true	// this.prop接口的值
+		},
+		props:{
+			prop:{
+				type:Number,
+				default:0	// 默认值也很重要
+			}
+		},
+		methods:{
+			goSearchPage() {
+				this.$router.push({path:'/searchPage'})
 			}
 		}
 	}
@@ -43,7 +93,7 @@
 		}
 		input{
 			width: 120px;
-			height: 24px;
+			height: 34px;
 			border-radius: 6px;
 			border: 0;
 			text-indent: 10px;
@@ -55,8 +105,35 @@
 				box-shadow: 0 0 0px 1000px #fff inset;
 			}
 		}
-		>div:nth-child(2){
+		.header-title{
 			flex:1
 		}
 	}
+  .tab{
+    display: flex;
+    align-items:center;
+    text-align: center;
+    height: 36px;
+    background-color: #df2d2d;
+
+    .tab-item{
+      flex:1;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 36px;
+      position: relative;
+      text-decoration: none;
+
+      &.active:after{
+        content: "";
+        position: absolute;
+        width: 70%;
+        height: 1px;
+        background-color:#fff;
+        bottom: 2px;
+        left: 20%;
+      }
+    }
+  }
 </style>

@@ -2,7 +2,7 @@
 	<div id="search-page">
 		<div class="search-wrap">
 			<div 	class="back"
-						@click="back"
+					@click="back"
 			>
 				<img src="../../assets/back.png" alt="取消">
 			</div>
@@ -41,7 +41,7 @@
 		},
 		methods:{
 			back() {
-				alert("回去")
+				this.$router.go(-1)
 			},
 			showInfo(index) {
 				alert(this.hotResult[index])

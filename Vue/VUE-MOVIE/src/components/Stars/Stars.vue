@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	const LEN = 5;
+	const LEN = 5;//星星个数
 	const CLS_ON = 'on';
 	const CLS_HALF = 'half';
 	const CLS_OFF = 'off';
@@ -13,7 +13,8 @@
 	export default {
 		props:{
 			score:{
-				type:Number
+				type:Number,
+				default:0//默认均显示0分星星
 			}
 		},
 		computed:{

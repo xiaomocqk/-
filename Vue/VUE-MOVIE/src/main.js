@@ -1,9 +1,28 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import App from './App.vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueResource);
+import App from './App.vue'
+import InTheater from './components/InTheater/InTheater.vue'
+import ComingSoon from './components/ComingSoon/ComingSoon.vue'
+import SearchPage from './components/SearchPage/SearchPage.vue'
+import FilmDetails from './components/FilmDetails/FilmDetails.vue'
+
+Vue.use(VueRouter);		//路由功能
+Vue.use(VueResource); 	//类似于ajax请求数据用
+
+// 配置路由
+const router = new VueRouter({
+	mode: 'history',//使url不带#
+	routes: [
+		{path: '/inTheater',component: InTheater},
+		{path: '/comingSoon',component: ComingSoon},
+		{path: '/searchPage',component: SearchPage},
+		{path: '/filmDetails',component: FilmDetails}
+	]
+});
+
 new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+	router,
+	render: h => h(App)
+}).$mount('#app')
