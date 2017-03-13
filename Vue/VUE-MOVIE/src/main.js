@@ -7,6 +7,7 @@ import InTheater from './components/InTheater/InTheater.vue'
 import ComingSoon from './components/ComingSoon/ComingSoon.vue'
 import SearchPage from './components/SearchPage/SearchPage.vue'
 import FilmDetails from './components/FilmDetails/FilmDetails.vue'
+import SmallComment from './components/SmallComment/SmallComment.vue'
 
 Vue.use(VueRouter);		//路由功能
 Vue.use(VueResource); 	//类似于ajax请求数据用
@@ -18,7 +19,8 @@ const router = new VueRouter({
 		{path: '/inTheater',component: InTheater},
 		{path: '/comingSoon',component: ComingSoon},
 		{path: '/searchPage',component: SearchPage},
-		{path: '/filmDetails',component: FilmDetails}
+		{path: '/filmDetails/:id',component: FilmDetails},	//【关键】带上id
+		{path: '/smallComment/:id', component: SmallComment}
 	]
 });
 

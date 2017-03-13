@@ -45,7 +45,7 @@
 </template>
 
 <script>
-	import VHead from '../Header/Header.vue'
+	import vHead from '../vHead/vHead.vue'
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
@@ -59,19 +59,18 @@
 			return {
 				tabActive:1,//索引值，表示频道“即将上映”其样式应处于active
 				loading:true,
-				city: CURRENT_CITY,
 				showEnd:false,//底线
 				movies:[]
 			}
 		},
 		components:{
-			VHead,
+			vHead,
 			Loading,
 			Stars
 		},
-		mounted() {
+		created(){//个人觉得created比mounted好
 			// https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd
-			let url = 'https://api.douban.com/v2/movie/coming_soon?count='+ DEFAULT_COUNT +'&city='+ encodeURI(this.city);
+			let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
 			this.$http.jsonp(url)
 				.then((response) => {
 					this.movies = response.body.subjects;

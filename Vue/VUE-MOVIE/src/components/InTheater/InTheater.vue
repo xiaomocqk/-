@@ -3,7 +3,9 @@
 		<v-head></v-head>
 		<loading v-if="loading"></loading>
 		<ul>
-			<li v-for="item in movies">
+			<li v-for="item in movies"
+				@click="filmDetails(item.id)"
+			>
 				<img 	:src="item.images.small"
 						:alt="item.alt"
 				>
@@ -45,7 +47,7 @@
 </template>
 
 <script>
-	import VHead from '../Header/Header.vue'
+	import vHead from '../vHead/vHead.vue'
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
@@ -57,19 +59,19 @@
 		data() {
 			return {
 				loading:true,
-				city: CURRENT_CITY,
 				showEnd:false,//底线
 				movies:[]
 			}
 		},
 		components:{
-			VHead,
+			vHead,
 			Loading,
 			Stars
 		},
-		mounted() {
+		created(){//个人觉得created比mounted好
 			// https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd
-			let url = 'https://api.douban.com/v2/movie/in_theaters?count='+ DEFAULT_COUNT +'&city='+ encodeURI(this.city);
+			
+			let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
 			this.$http.jsonp(url)
 				.then((response) => {
 					this.movies = response.body.subjects;
@@ -80,6 +82,12 @@
 					console.log(response)
 				}
 			)
+		},
+		methods:{
+			filmDetails(id){
+				const path = '/filmDetails/'+id;
+				this.$router.push({path: path})
+			}
 		}
 	}
 </script>

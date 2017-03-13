@@ -19,17 +19,19 @@
 		},
 		computed:{
 			itemClasses() {
-				const floor = Math.floor;
 				let result = [];
-				let score = floor(this.score)/2;
-				let starOn = floor(score);
-				let starHalf = floor(score - starOn) === 0 ? 0 : 1;
+				const floor = Math.floor;
+				let n = floor(this.score)/2;
+				let starOn = floor(n);
+				let starHalf = (n - starOn) === 0 ? 0 : 1;
+				
 				let starOff = LEN - starOn - starHalf;
 
 				for (let i = 0; i < starOn; i++) {
 					result.push('on')
 				};
-				starHalf === 1 && result.push('half');
+				(starHalf === 1) && result.push('half');
+				
 				for (var i = 0; i < starOff; i++) {
 					result.push('off')
 				};

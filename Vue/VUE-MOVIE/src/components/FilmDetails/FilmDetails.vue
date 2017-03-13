@@ -1,73 +1,154 @@
 <template>
 	<div class="film-details">
-		<!-- <loading v-if="loading"></loading> -->
-		<header>
-			<img src="../../assets/back-ffffff.png" alt="返回">
-			<h3>{{'扫啊'}}</h3>
-		</header>
-		<div class="flim-info">
-			<img src="./p2432493858.jpg" alt="OOOOO">
-			<div>
-				<h3>{{"扫啊"}}</h3>
-				<stars></stars>
-				<div class="film-info-msg">
-					<span>{{84}}({{123}}人评分)</span>
-					<span>{{123}}</span>
-					<span>{{654}}</span>
-					<span>{{789}}</span>
-					<span>{{453}}</span>
+		<loading v-if="loading"></loading>
+		<div v-else>
+			<v-title :title="message.title"></v-title>
+			<div class="flim-info">
+				<img :src="message.images.medium" :alt="message.alt">
+				<div>
+					<h3>
+						{{message.title}}
+					</h3>
+					<stars :score="message.rating.average"></stars>
+					<div class="film-info-msg">
+						<div>
+							{{message.rating.average}}分
+							({{message.collect_count}}人评分)
+						</div>
+						<div>
+							{{message.year}}年
+						</div>
+
+						<!-- 遍历的时候也可以用join方法 -->
+						<span v-for="item in message.genres.join(', ')">
+							{{item}}
+						</span>
+						<div>
+							<span v-for="item in message.countries.join(', ')">
+								{{item}}
+							</span>
+						</div>
+						<div>
+							<span 	v-for="item in message.durations"
+									v-if="item.indexOf('中国') != -1"
+							>
+								{{item}}
+							</span>
+						</div>
+						<div>
+							<span 	v-for="item in message.pubdates"
+									v-if="item.indexOf('中国') != -1"
+							>
+								{{item}}
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div id="container">
-			<div class="film-count">
-				<span>{{46545}}人想看</span>
-				<span>{{1}}人看过</span>
+			<div id="container">
+				<div class="film-count">
+					<span>{{message.wish_count}}人想看</span>
+					<span>{{message.reviews_count}}人看过</span>
+				</div>
+				<div class="abstract">{{message.summary}}</div>
+				<section class="actors">
+					<h3 class="section-title">演职人员</h3>
+					 <ul>
+					 	<li v-for="item in message.directors">
+					 		<img 	:src="item.avatars.small"
+					 				:alt="item.alt"
+					 		>
+					 		<span>
+					 			{{item.name}}[导演]
+					 		</span>
+					 	</li>
+					 	<li v-for="item in message.casts">
+					 		<img 	:src="item.avatars.small"
+					 				:alt="item.alt"
+					 		>
+					 		<span>
+					 			{{item.name}}
+					 		</span>
+					 	</li>
+					 </ul>
+				</section>
+				<section class="small-comment">
+					<h3 class="section-title">热门短评</h3>
+					<ul>
+						<li v-for="item in message.popular_comments">
+							<div class="rating">
+								<stars :score="item.rating.value*2"></stars>
+								<span>{{item.created_at}}</span>
+							</div>
+							<p>{{item.content}}</p>
+							<div class="user-info">
+								<img :src="item.author.avatar" alt="0000000">
+								<span>{{item.author.name}}</span>
+							</div>
+						</li>
+					</ul>
+				</section>
+				<div class="get-more">
+					<div @click="goSmallComment(message.id)">查看全部短评</div>
+					<div>查看全部影评</div>
+				</div>
 			</div>
-			<div class="abstract">{{1231231}}</div>
-			<section>
-				<h3 class="section-title">演职人员</h3>
-				 <ul>
-				 	<li>
-				 		<img src="" alt="">
-				 		<span>{{"拉屎"}}</span>
-				 	</li>
-				 </ul>
-			</section>
-			<section>
-				<h3 class="section-title">热门短评</h3>
-				<stars></stars>
-				<span>2017</span>
-			</section>
 		</div>
 	</div>
 </template>
 
 <script>
-import Loading from "../Loading/Loading.vue"
-import Stars from "../Stars/Stars.vue"
+	import Loading from "../Loading/Loading.vue"
+	import Stars from "../Stars/Stars.vue"
+	import vTitle from "../vTitle/vTitle.vue"
+
+	const CURRENT_CITY = "厦门"
 
 	export default {
 		data() {
 			return {
 				loading: true,
-				message: {
-					title:"你好"
-				}
+				message: {}
 			}
 		},
 		components:{
 			Loading,
-			Stars
+			Stars,
+			vTitle
+		},
+		created(){
+			// this.$nextTick(()=>{
+			const url = 'https://api.douban.com/v2/movie/subject/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+encodeURI(CURRENT_CITY);
+
+			this.$http.jsonp(url)
+				.then((response)=>{
+					const result = response.body;
+					this.message = result;
+					this.loading = false;
+				})
+				.catch((response)=>{
+					console.log(response)
+			})
+			// })
+		},
+		methods:{
+			goSmallComment(id){
+				const path = '/smallComment/'+id;
+				this.$router.push({path: path})
+			}
 		}
 	}
 </script>
 
 <style lang="less">
 	@back-width:26px;
+	@actor-img-width:70px;
+	@red:#e54847;
 
 	#app{
 		background-color: #e5e9f2;
+		overflow: scroll;
+		// padding-bottom: 2000px;
 	}
 	.film-details{
 		header{
@@ -75,7 +156,7 @@ import Stars from "../Stars/Stars.vue"
 			display: flex;
 			align-items:center;
 			padding: 0 10px;
-			background-color: #e54847;
+			background-color: @red;
 
 			img{
 				height: @back-width;
@@ -99,7 +180,7 @@ import Stars from "../Stars/Stars.vue"
 				padding-left: 10px;
 			}
 			h3{
-				font-size: 20px;
+				font-size: 18px;
 				line-height: 1.5
 			}
 			img{
@@ -113,29 +194,111 @@ import Stars from "../Stars/Stars.vue"
 		}
 		.film-info-msg{
 			color: #6b6868;
-
-			span{
-				display: block;
-				line-height: 1.5
-			}
+			line-height: 1.5
 		}
 	}
 	#container{
 		padding: 0 10px;
 	}
+
+	.abstract{
+		line-height: 1.8;
+		text-indent: 2em;
+		margin-top: 10px;
+		font-size: 14px;
+	}
+
 	.film-count{
 		text-align: center;
 		padding: 10px 0;
 
 		span{
 			display: inline-block;
-			padding: 6px 10px;
+			padding: 8px 16px;
 			border-radius: 4px;
 			color: #fff;
 			font-size: 14px;
-			background-color: #e54847;
+			background-color: @red;
 			margin: 0 10px;
 		}
 	}
-	.abstract{}
+	section{
+		padding: 10px 0
+	}
+	.section-title{
+		font-size: 15px;
+		font-weight: 700;
+		margin-bottom: 4px;
+		line-height: 2.5
+	}
+	// 演职人员
+	.actors{
+		ul{
+			display: flex;
+			overflow-x: auto;
+		}
+		li{
+			width: @actor-img-width;
+			margin-right: 6px;
+		}
+		span{
+			display: block;
+			width: @actor-img-width;
+			text-overflow:ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			line-height: 2
+		}
+	}
+	
+	// 短评
+	@border-color:#d3d3d3;
+	@height:40px;
+
+	.small-comment{
+		h3{
+			border-bottom: 1px solid @border-color;
+		}
+		li {
+			border-bottom: 1px dashed @border-color;
+			padding: 10px 0;
+		}
+		img{
+			border-radius: 50%;
+			margin-right: 10px;
+			padding: 10px 0;
+		}
+		.rating{
+			overflow: hidden;
+
+			.stars {
+				float: left;
+			}
+			span {
+				line-height: 1.8;
+			}
+		}
+		p{
+			padding: 10px 0;
+			line-height: 1.8
+		}
+		.user-info{
+			display: flex;
+			align-items:center
+		}
+	}
+	.get-more {
+		padding: 20px 0;
+
+		div{
+			height: @height;
+			border: 1px solid @border-color;
+			margin-bottom: 6px;
+			font-size: 12px;
+			color: @red;
+			text-align: center;
+			line-height: @height;
+			border-radius: 4px;
+		}
+	}
 </style>
