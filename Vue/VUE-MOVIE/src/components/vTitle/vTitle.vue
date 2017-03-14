@@ -6,7 +6,6 @@
 		>
 		<h3>
 			<slot></slot>
-			{{title}}
 		</h3>
 	</header>
 </template>
@@ -16,11 +15,6 @@
 		data(){
 			return {
 
-			}
-		},
-		props:{
-			title:{
-				type: String
 			}
 		},
 		methods:{

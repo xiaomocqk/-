@@ -2,7 +2,7 @@
 	<div class="film-details">
 		<loading v-if="loading"></loading>
 		<div v-else>
-			<v-title :title="message.title"></v-title>
+			<v-title>{{message.title}}</v-title>
 			<div class="flim-info">
 				<img :src="message.images.medium" :alt="message.alt">
 				<div>
@@ -74,23 +74,11 @@
 				</section>
 				<section class="small-comment">
 					<h3 class="section-title">热门短评</h3>
-					<ul>
-						<li v-for="item in message.popular_comments">
-							<div class="rating">
-								<stars :score="item.rating.value*2"></stars>
-								<span>{{item.created_at}}</span>
-							</div>
-							<p>{{item.content}}</p>
-							<div class="user-info">
-								<img :src="item.author.avatar" alt="0000000">
-								<span>{{item.author.name}}</span>
-							</div>
-						</li>
-					</ul>
+					<comment-list :commentList="message.popular_comments"></comment-list>
 				</section>
 				<div class="get-more">
 					<div @click="goSmallComment(message.id)">查看全部短评</div>
-					<div>查看全部影评</div>
+					<div @click="goLongComment(message.id)">查看全部影评</div>
 				</div>
 			</div>
 		</div>
@@ -101,8 +89,9 @@
 	import Loading from "../Loading/Loading.vue"
 	import Stars from "../Stars/Stars.vue"
 	import vTitle from "../vTitle/vTitle.vue"
+	import CommentList from "../CommentList/CommentList.vue"
 
-	const CURRENT_CITY = "厦门"
+	const CURRENT_CITY = "厦门";
 
 	export default {
 		data() {
@@ -114,27 +103,39 @@
 		components:{
 			Loading,
 			Stars,
-			vTitle
+			vTitle,
+			CommentList
 		},
 		created(){
-			// this.$nextTick(()=>{
-			const url = 'https://api.douban.com/v2/movie/subject/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+encodeURI(CURRENT_CITY);
+			const KEY = 'id' + this.$route.params.id;//不是$router
+			let url = 'https://api.douban.com/v2/movie/subject/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+encodeURI(CURRENT_CITY);
 
-			this.$http.jsonp(url)
-				.then((response)=>{
-					const result = response.body;
-					this.message = result;
-					this.loading = false;
-				})
-				.catch((response)=>{
-					console.log(response)
-			})
-			// })
+			// 重点是利用 in 判断和 || 赋值
+			window.cache.filmDetails = window.cache.filmDetails || {};	// 缓存
+			let items = window.cache.filmDetails;
+
+			if (KEY in items) {
+				this.message = items[KEY];
+				this.loading = false
+			} else {
+				this.$http.jsonp(url)
+					.then(response => {
+						const result = response.body;
+						// 缓存以{id001:{},id002:{}}的方式储存
+						window.cache.filmDetails[KEY] = this.message = result;
+						this.loading = false;
+					})
+					.catch( response => console.log(response) );
+			}
 		},
 		methods:{
 			goSmallComment(id){
 				const path = '/smallComment/'+id;
 				this.$router.push({path: path})
+			},
+			goLongComment(id){
+				const path = '/longComment/'+id;
+				this.$router.push({path:path});
 			}
 		}
 	}
@@ -258,7 +259,7 @@
 	.small-comment{
 		h3{
 			border-bottom: 1px solid @border-color;
-		}
+		}/* 
 		li {
 			border-bottom: 1px dashed @border-color;
 			padding: 10px 0;
@@ -270,7 +271,7 @@
 		}
 		.rating{
 			overflow: hidden;
-
+		
 			.stars {
 				float: left;
 			}
@@ -285,7 +286,7 @@
 		.user-info{
 			display: flex;
 			align-items:center
-		}
+		} */
 	}
 	.get-more {
 		padding: 20px 0;

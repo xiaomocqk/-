@@ -55,6 +55,8 @@
 	const DEFAULT_COUNT = 5;		//一次最多请求5条(用于分页)
 	let start = 0;		//数据请求的起始位置(用于分页)
 
+	window.cache = {};	//自定义命名空间。所有子页面组件公用的缓存地址
+
 	export default {
 		data() {
 			return {
@@ -68,20 +70,25 @@
 			Loading,
 			Stars
 		},
-		created(){//个人觉得created比mounted好
-			// https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd
-			
-			let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
-			this.$http.jsonp(url)
-				.then((response) => {
-					this.movies = response.body.subjects;
-					this.loading = false;
-					this.showEnd = true
-				})
-				.catch((response) => {
-					console.log(response)
-				}
-			)
+		created(){
+			window.cache.movies = window.cache.movies || [];
+			if (window.cache.movies.length) {
+				this.movies = window.cache.movies;
+				this.loading = false;
+			}else{
+				let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
+				this.$http.jsonp(url)
+					.then((response) => {
+						// 缓存
+						window.cache.movies = this.movies = response.body.subjects;
+						this.loading = false;
+						this.showEnd = true
+					})
+					.catch((response) => {
+						console.log(response)
+					}
+				);
+			}
 		},
 		methods:{
 			filmDetails(id){
