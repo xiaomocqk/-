@@ -19,13 +19,13 @@
 							{{message.year}}年
 						</div>
 
-						<!-- 遍历的时候也可以用join方法 -->
-						<span v-for="item in message.genres.join(', ')">
-							{{item}}
+						<!-- 直接使用toString方法，而不用遍历再join方法 -->
+						<span>
+							{{ message.genres.toString() }}
 						</span>
 						<div>
-							<span v-for="item in message.countries.join(', ')">
-								{{item}}
+							<span>
+								{{ message.countries.toString() }}
 							</span>
 						</div>
 						<div>
@@ -36,11 +36,11 @@
 							</span>
 						</div>
 						<div>
-							<span 	v-for="item in message.pubdates"
+							<div 	v-for="item in message.pubdates"
 									v-if="item.indexOf('中国') != -1"
 							>
 								{{item}}
-							</span>
+							</div>
 						</div>
 					</div>
 				</div>

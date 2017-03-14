@@ -3,7 +3,9 @@
 		<v-head :prop="tabActive"></v-head>
 		<loading v-if="loading"></loading>
 		<ul>
-			<li v-for="item in movies">
+			<li v-for="item in movies"
+				@click="comingSoonPage(item.id)"
+			>
 				<img 	:src="item.images.small"
 						:alt="item.alt"
 				>
@@ -70,17 +72,29 @@
 		},
 		created(){//个人觉得created比mounted好
 			// https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd
-			let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
-			this.$http.jsonp(url)
-				.then((response) => {
-					this.movies = response.body.subjects;
-					this.loading = false;
-					this.showEnd = true;
-				})
-				.catch((response) => {
-					console.log(response)
-				}
-			);
+			window.cache.commingSoon = window.cache.commingSoon || [];
+			if (window.cache.commingSoon.length) {
+				this.movies = window.cache.commingSoon;
+				this.loading = false;
+			} else {
+				let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
+				this.$http.jsonp(url)
+					.then((response) => {
+						window.cache.commingSoon = this.movies = response.body.subjects;
+						this.loading = false;
+						this.showEnd = true;
+					})
+					.catch((response) => {
+						console.log(response)
+					}
+				);
+			}
+		},
+		methods:{
+			comingSoonPage(id) {
+				const path = '/filmDetails/'+id;
+				this.$router.push({path:path})
+			}
 		}
 	}
 </script>
