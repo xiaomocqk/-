@@ -54,7 +54,9 @@
 				<section class="actors">
 					<h3 class="section-title">演职人员</h3>
 					 <ul>
-					 	<li v-for="item in message.directors">
+					 	<li v-for="item in message.directors"
+					 		@click="goActorInfo(item.id)"
+					 	>
 					 		<img 	:src="item.avatars.small"
 					 				:alt="item.alt"
 					 		>
@@ -62,7 +64,9 @@
 					 			{{item.name}}[导演]
 					 		</span>
 					 	</li>
-					 	<li v-for="item in message.casts">
+					 	<li v-for="item in message.casts"
+							@click="goActorInfo(item.id)"
+					 	>
 					 		<img 	:src="item.avatars.small"
 					 				:alt="item.alt"
 					 		>
@@ -91,8 +95,6 @@
 	import vTitle from "../vTitle/vTitle.vue"
 	import CommentList from "../CommentList/CommentList.vue"
 
-	const CURRENT_CITY = "厦门";
-
 	export default {
 		data() {
 			return {
@@ -108,14 +110,13 @@
 		},
 		created(){
 			const KEY = 'id' + this.$route.params.id;//不是$router
-			let url = 'https://api.douban.com/v2/movie/subject/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+encodeURI(CURRENT_CITY);
+			let url = 'https://api.douban.com/v2/movie/subject/' + this.$route.params.id + '?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+encodeURI(window.cache.CURRENT_CITY);
 
-			// 重点是利用 in 判断和 || 赋值
-			window.cache.filmDetails = window.cache.filmDetails || {};	// 缓存
-			let items = window.cache.filmDetails;
+			// 重点是利用 in 判断和 || 赋值 --> 不需要了，因为已经统一在main.js中声明了
+			// window.cache.filmDetails = window.cache.filmDetails || {};	// 缓存
 
-			if (KEY in items) {
-				this.message = items[KEY];
+			if (KEY in window.cache.filmDetails) {
+				this.message = window.cache.filmDetails[KEY];
 				this.loading = false
 			} else {
 				this.$http.jsonp(url)
@@ -135,6 +136,10 @@
 			},
 			goLongComment(id){
 				const path = '/longComment/'+id;
+				this.$router.push({path:path});
+			},
+			goActorInfo(id) {
+				const path = '/actorInfo/'+ id;
 				this.$router.push({path:path});
 			}
 		}

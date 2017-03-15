@@ -1,6 +1,6 @@
 <template>
 	<div id="in-theater">
-		<v-head></v-head>
+		<v-head :prop="1"></v-head>
 		<loading v-if="loading"></loading>
 		<ul>
 			<li v-for="item in movies"
@@ -51,11 +51,8 @@
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
-	const CURRENT_CITY = "厦门";
 	const DEFAULT_COUNT = 5;		//一次最多请求5条(用于分页)
 	let start = 0;		//数据请求的起始位置(用于分页)
-
-	window.cache = {};	//自定义命名空间。所有子页面组件公用的缓存地址
 
 	export default {
 		data() {
@@ -71,12 +68,11 @@
 			Stars
 		},
 		created(){
-			window.cache.movies = window.cache.movies || [];
 			if (window.cache.movies.length) {
 				this.movies = window.cache.movies;
 				this.loading = false;
 			}else{
-				let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
+				let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(window.cache.CURRENT_CITY);
 				this.$http.jsonp(url)
 					.then((response) => {
 						// 缓存

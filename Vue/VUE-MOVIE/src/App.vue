@@ -9,11 +9,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 html,body{
   height: 100%;
+  width: 100%;
   overflow: hidden;
-  font-size: 62.5%;
+  font-size: 85%;//所有的文件并没有使用rem布局，所以这数值几乎没有什么作用
 }
 
 body{
@@ -22,6 +23,7 @@ body{
   margin:0 auto;
 }
 #app {
+    width: 100%;
     height: 100%;
     overflow: auto;
     font-family: 'FontAwesome', Helvetica, Arial, sans-serif;

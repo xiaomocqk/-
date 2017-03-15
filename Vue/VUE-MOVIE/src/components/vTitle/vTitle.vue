@@ -34,14 +34,17 @@
 	@height:50px;
 	
 	.title-wrap{
+		// width: 100%;
+		// display: flex;
+
 		header{
 			height: @height;
+			position: fixed;
 			display: flex;
 			align-items:center;
 			padding: 0 10px;
 			background-color: @red;
 			width: 100%;
-			position: fixed;
 
 			img{
 				height: @back-width;

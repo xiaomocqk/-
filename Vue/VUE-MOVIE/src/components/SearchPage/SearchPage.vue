@@ -8,16 +8,22 @@
 			</div>
 			<input 	type="text"
 					placeholder="请输入电影名称"
-					v-model="key">
-			<span class="go">搜索</span>
+					v-model="key"
+					@keyup.enter="submit"
+			>
+			<span 	class="go"
+					@click="submit"
+			>
+				搜索
+			</span>
 		</div>
 		<div class="hot-search">
 			<h3>热门搜索</h3>
 			<div class="hot-result">
-				<span v-for="(item,index) in hotResult"
-							@click="showInfo(index)"
+				<span 	v-for="item in hotResult"
+						@click="filmDetails(item.id)"
 				>
-					{{item}}
+					{{item.title}}
 				</span>
 			</div>
 		</div>
@@ -28,23 +34,27 @@
 	export default {
 		data(){
 			return {
-				hotResult: [
-					"金刚狼3",
-					"一条狗的使命",
-					"生化危机·终章",
-					"乐高蝙蝠侠",
-					"爱乐之城",
-					"欢乐好声音"
-				],
+				hotResult: [],
 				key:""
 			}
+		},
+		created(){
+			this.hotResult = window.cache.movies
 		},
 		methods:{
 			back() {
 				this.$router.go(-1)
 			},
-			showInfo(index) {
-				alert(this.hotResult[index])
+			filmDetails(id){
+				const path = '/filmDetails/'+id;
+				this.$router.push({path: path})
+			},
+			submit() {
+				this.$router.push({
+					path:'/searchResult',
+					query: { name: this.key }
+				});
+				this.key = '';
 			}
 		}
 	}
@@ -71,10 +81,15 @@
 			height: 32px;
 			border: none;
 			border-radius: 16px;
-			text-indent: 10px;
+			text-indent: 20px;
 		}
 		.go{
-			padding: 0 5px;
+			padding: 6px 10px;
+			margin-left: 6px;
+			color: #fff;
+			background-color: #df2d2d;
+			border-radius: 20px;
+
 		}
 		.hot-search {
 
@@ -88,11 +103,11 @@
 			display: flex;
 			flex-wrap:wrap;
 			span{
-				padding: 4px 6px;
+				padding: 6px 14px;
 				background-color: #fff;
-				border-radius: 10px;
+				border-radius: 20px;
 				margin-right: 5px;
-				margin-bottom: 8px;
+				margin-bottom: 12px;
 				color: #e54847;
 			}
 		}

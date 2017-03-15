@@ -53,12 +53,13 @@
 			this.items.forEach((item)=>{
 				item.isActive = false
 			});
-			this.items[this.prop].isActive = true	// this.prop接口的值
+			if (this.prop) {
+				this.items[this.prop-1].isActive = true	// this.prop接口的值
+			}
 		},
-		props:{
+		props: {	//prop不传值或者0或者传负值时，即没有选中的样式
 			prop:{
-				type:Number,
-				default:0	// 默认值也很重要
+				type:Number
 			}
 		},
 		methods:{

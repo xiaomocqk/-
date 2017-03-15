@@ -1,6 +1,6 @@
 <template>
 	<div id="coming-soon">
-		<v-head :prop="tabActive"></v-head>
+		<v-head :prop="2"></v-head>
 		<loading v-if="loading"></loading>
 		<ul>
 			<li v-for="item in movies"
@@ -51,15 +51,12 @@
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
-	const CURRENT_CITY = "厦门";	//当前城市
 	const DEFAULT_COUNT = 5;		//一次最多请求5条
-	
-	let start = 0;
 
 	export default {
 		data() {
 			return {
-				tabActive:1,//索引值，表示频道“即将上映”其样式应处于active
+				// tabActive:1,//索引值，表示频道“即将上映”其样式应处于active
 				loading:true,
 				showEnd:false,//底线
 				movies:[]
@@ -72,12 +69,11 @@
 		},
 		created(){//个人觉得created比mounted好
 			// https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=somemessage&udid=dddddddddddddddddddddd
-			window.cache.commingSoon = window.cache.commingSoon || [];
 			if (window.cache.commingSoon.length) {
 				this.movies = window.cache.commingSoon;
 				this.loading = false;
 			} else {
-				let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(CURRENT_CITY);
+				let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(window.cache.CURRENT_CITY);
 				this.$http.jsonp(url)
 					.then((response) => {
 						window.cache.commingSoon = this.movies = response.body.subjects;
