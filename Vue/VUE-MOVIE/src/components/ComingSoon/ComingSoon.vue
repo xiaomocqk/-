@@ -51,7 +51,7 @@
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
-	const DEFAULT_COUNT = 5;		//一次最多请求5条
+	// const DEFAULT_COUNT = 5;		//一次最多请求5条
 
 	export default {
 		data() {
@@ -73,7 +73,7 @@
 				this.movies = window.cache.commingSoon;
 				this.loading = false;
 			} else {
-				let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(window.cache.CURRENT_CITY);
+				let url = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+ encodeURI(window.cache.CURRENT_CITY);
 				this.$http.jsonp(url)
 					.then((response) => {
 						window.cache.commingSoon = this.movies = response.body.subjects;

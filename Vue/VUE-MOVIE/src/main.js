@@ -18,6 +18,7 @@ Vue.use(VueResource); 	//类似于ajax请求数据用
 // 配置路由
 const router = new VueRouter({
 	// mode: 'history',//使url不带#。适用于开发模式，生产模式下不能这样做，否则其他子页面刷新将无法找到网页
+	// base: __dirname,
 	routes: [
 		//重定向【如果再App.vue中的created使用push的方法改变路由
 		// 那么在任何子页面刷新，都将会回到首页
@@ -31,7 +32,22 @@ const router = new VueRouter({
 		{path: '/longComment/:id', component: LongComment},
 		{path: '/actorInfo/:id', component: ActorInfo},
 		{path: '/searchResult', component: SearchResult},
-	]
+	],
+	scrollBehavior (to, from, savedPosition) {
+	  if (savedPosition) {
+	    return savedPosition
+	  } else {
+	    const position = {};
+	    if(to.hash){
+	    	position.selector = to.hash
+	    };
+	    if (to.matched.some(m => m.meta.scrollTop)) {
+	    	position.x = 0;
+	    	position.y = 0
+	    };
+	    return position
+	  }
+	}
 });
 
 //自定义命名空间。所有子页面组件公用的缓存地址

@@ -154,7 +154,6 @@
 	#app{
 		background-color: #e5e9f2;
 		overflow: scroll;
-		// padding-bottom: 2000px;
 	}
 	.film-details{
 		header{

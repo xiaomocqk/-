@@ -31,6 +31,7 @@
 </template>
 
 <script>
+	const hotCount = 8;//热词个数
 	export default {
 		data(){
 			return {
@@ -39,7 +40,7 @@
 			}
 		},
 		created(){
-			this.hotResult = window.cache.movies
+			this.hotResult = window.cache.movies.slice(0,hotCount)
 		},
 		methods:{
 			back() {

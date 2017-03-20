@@ -11,6 +11,7 @@
 · 新建一个base.less统一管理公共样式
 · 组件按需加载
 · 页面之间的过渡动画，即进场、退场
+· 获取数据是在created中获取，可以改进为导航钩子beforeRouteEnter 。https://router.vuejs.org/zh-cn/advanced/data-fetching.html
 
 # 问题
 √ 首页第一次加载可能出现布局变大 --> 原因是reset.css加载失败。写入内联样式

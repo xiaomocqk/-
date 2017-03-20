@@ -9,7 +9,7 @@
 				<slot></slot>
 			</h3>
 		</header>
-		<div class="placeholder"></div>
+		<!-- <div class="placeholder"></div> -->
 	</div>
 </template>
 
@@ -34,12 +34,9 @@
 	@height:50px;
 	
 	.title-wrap{
-		// width: 100%;
-		// display: flex;
 
 		header{
 			height: @height;
-			position: fixed;
 			display: flex;
 			align-items:center;
 			padding: 0 10px;
@@ -56,9 +53,6 @@
 				font-size: 20px;
 				color: #fff;
 			}
-		}
-		.placeholder{
-			height: @height;
 		}
 	}
 </style>

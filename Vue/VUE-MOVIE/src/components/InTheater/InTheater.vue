@@ -51,8 +51,8 @@
 	import Loading from '../Loading/Loading.vue'
 	import Stars from '../Stars/Stars.vue'
 
-	const DEFAULT_COUNT = 5;		//一次最多请求5条(用于分页)
-	let start = 0;		//数据请求的起始位置(用于分页)
+	// const DEFAULT_COUNT = 5;		//一次最多请求5条(用于分页)
+	// let start = 0;		//数据请求的起始位置(用于分页)
 
 	export default {
 		data() {
@@ -72,7 +72,7 @@
 				this.movies = window.cache.movies;
 				this.loading = false;
 			}else{
-				let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&count='+ DEFAULT_COUNT +'&city='+ encodeURI(window.cache.CURRENT_CITY);
+				let url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city='+ encodeURI(window.cache.CURRENT_CITY);
 				this.$http.jsonp(url)
 					.then((response) => {
 						// 缓存
